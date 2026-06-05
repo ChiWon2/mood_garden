@@ -6,7 +6,11 @@
   <title>MoodGarden | 오늘의 정원</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+  <!-- #region header , nav //brandmark + brand -->
+  <!--!!!! TODO :: teamMates must Copy & Paste this header !!!!-->
+
   <header class="site-header">
     <a class="brand" href="main.html" aria-label="MoodGarden main">
       <span class="brand-mark">MG</span>
@@ -16,11 +20,15 @@
       <a class="active" href="main.html">오늘의 정원</a>
       <a href="form.html">감정 심기</a>
       <a href="game.html">감정 돌보기</a>
+      <a href="dictonary.html">감정 도감</a>
+      <a href="shout.html">감정 비우기</a>
       <a href="team.html">가드너 소개</a>
     </nav>
   </header>
+  <!-- #endregion header -->
 
-  <main>
+  <!-- #region heroSection  -->
+  <main class>
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">감정을 심고, 하루를 키우다</p>
@@ -34,6 +42,7 @@
           <a class="button secondary" href="game.html">돌보기 시작</a>
         </div>
       </div>
+      <!-- #region CSS style Paiting-->
       <div class="garden-scene" aria-label="MoodGarden visual garden">
         <div class="sun"></div>
         <div class="plant big plant-sunflower" id="mainPlant">
@@ -48,7 +57,10 @@
         </div>
         <div class="ground"></div>
       </div>
+      <!-- #endregion CSS style Paiting-->
     </section>
+  <!-- #endregion heroSection  -->
+
 
     <section class="section">
       <div class="section-heading">
@@ -97,14 +109,18 @@
         <li><span>1</span>오늘의 감정 입력</li>
         <li><span>2</span>감정에 맞는 식물 생성</li>
         <li><span>3</span>감정별 돌봄 액션 수행</li>
-        <li><span>4</span>나만의 정원 완성</li>
+        <li><span>4</span>감정별 돌봄 액션 수행</li>
+        <li><span>5</span>감정별 돌봄 액션 수행</li>
+        <li><span>6</span>나만의 정원 완성</li>
       </ol>
     </section>
   </main>
 
   <footer class="site-footer">
-    <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+    <p>KMU - Web Client Computing - Team9  MoodGarden · HTML CSS JavaScript</p>
   </footer>
+  <!-- TODO TEAM :: Add this   <script src="js/common.js"></script>-->
+  <script src="js/common.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

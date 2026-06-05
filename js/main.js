@@ -2,6 +2,7 @@ const mainPlant = document.querySelector("#mainPlant");
 const gardenPlants = document.querySelectorAll(".garden-scene .plant");
 const gardenScene = document.querySelector(".garden-scene");
 
+//TODO CHECK :: can i delete this??
 const plantClasses = [
   "plant-sunflower",
   "plant-lavender",
@@ -38,3 +39,6 @@ function loadMainPlant() {
 }
 
 loadMainPlant();
+
+//TODO CHECK :: can i delete this??
+
