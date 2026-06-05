@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodGarden | 오늘의 정원</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="main.html" aria-label="MoodGarden main">
+      <span class="brand-mark">MG</span>
+      <span>MoodGarden</span>
+    </a>
+    <nav class="nav">
+      <a class="active" href="main.html">오늘의 정원</a>
+      <a href="form.html">감정 심기</a>
+      <a href="game.html">감정 돌보기</a>
+      <a href="team.html">가드너 소개</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">감정을 심고, 하루를 키우다</p>
+        <h1>MoodGarden</h1>
+        <p>
+          오늘의 감정을 식물로 기록하고, 감정별 돌봄 액션으로 성장시키며
+          하루를 조용히 돌아보는 감정 기록 웹 서비스입니다.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="form.html">감정 심기</a>
+          <a class="button secondary" href="game.html">돌보기 시작</a>
+        </div>
+      </div>
+      <div class="garden-scene" aria-label="MoodGarden visual garden">
+        <div class="sun"></div>
+        <div class="plant big plant-sunflower" id="mainPlant">
+          <span></span>
+          <span></span>
+          <strong></strong>
+        </div>
+        <div class="plant small plant-sunflower">
+          <span></span>
+          <span></span>
+          <strong></strong>
+        </div>
+        <div class="ground"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Mood Cards</p>
+        <h2>감정이 식물이 되는 방식</h2>
+      </div>
+      <div class="card-grid mood-grid">
+        <article class="card mood-card">
+          <span class="mood-icon sunflower">Sunflower</span>
+          <h3>행복</h3>
+          <p>밝은 기분은 해바라기처럼 크게 피어납니다.</p>
+        </article>
+        <article class="card mood-card">
+          <span class="mood-icon lavender">Lavender</span>
+          <h3>평온</h3>
+          <p>차분한 하루는 라벤더처럼 은은하게 자랍니다.</p>
+        </article>
+        <article class="card mood-card">
+          <span class="mood-icon moss">Moss</span>
+          <h3>피곤</h3>
+          <p>지친 감정은 이끼처럼 천천히 회복됩니다.</p>
+        </article>
+        <article class="card mood-card">
+          <span class="mood-icon hydrangea">Hydrangea</span>
+          <h3>슬픔</h3>
+          <p>무거운 마음은 수국처럼 부드럽게 머뭅니다.</p>
+        </article>
+        <article class="card mood-card">
+          <span class="mood-icon cactus">Cactus</span>
+          <h3>화남</h3>
+          <p>날카로운 감정은 선인장으로 안전하게 표현됩니다.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section split-section">
+      <div>
+        <p class="eyebrow">Growth Flow</p>
+        <h2>기록에서 성장까지</h2>
+        <p class="section-copy">
+          사용자는 감정과 강도를 입력하고, 생성된 식물을 감정별 돌봄 액션으로 키우며
+          자신의 하루를 시각적으로 확인합니다.
+        </p>
+      </div>
+      <ol class="flow-list">
+        <li><span>1</span>오늘의 감정 입력</li>
+        <li><span>2</span>감정에 맞는 식물 생성</li>
+        <li><span>3</span>감정별 돌봄 액션 수행</li>
+        <li><span>4</span>나만의 정원 완성</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+  </footer>
+  <script src="js/main.js"></script>
+</body>
+</html>

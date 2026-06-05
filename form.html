@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodGarden | 감정 심기</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="main.html">
+      <span class="brand-mark">MG</span>
+      <span>MoodGarden</span>
+    </a>
+    <nav class="nav">
+      <a href="main.html">오늘의 정원</a>
+      <a class="active" href="form.html">감정 심기</a>
+      <a href="game.html">감정 돌보기</a>
+      <a href="team.html">가드너 소개</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <p class="eyebrow">Plant Your Mood</p>
+      <h1>감정 심기</h1>
+      <p>오늘의 감정을 입력하면 MoodGarden이 어울리는 식물을 추천합니다.</p>
+    </section>
+
+    <section class="form-layout">
+      <form class="card mood-form" id="moodForm">
+        <label for="userName">이름</label>
+        <input type="text" id="userName" placeholder="예: 민지">
+
+        <label for="moodSelect">오늘의 감정</label>
+        <select id="moodSelect">
+          <option value="">감정을 선택하세요</option>
+          <option value="happy">행복</option>
+          <option value="calm">평온</option>
+          <option value="tired">피곤</option>
+          <option value="sad">슬픔</option>
+          <option value="angry">화남</option>
+        </select>
+
+        <fieldset>
+          <legend>감정 강도</legend>
+          <div class="radio-row">
+            <label><input type="radio" name="level" value="낮음"> 낮음</label>
+            <label><input type="radio" name="level" value="보통"> 보통</label>
+            <label><input type="radio" name="level" value="높음"> 높음</label>
+          </div>
+        </fieldset>
+
+        <label for="todayNote">오늘의 한 줄</label>
+        <textarea id="todayNote" rows="5" placeholder="오늘 하루를 짧게 기록해 보세요."></textarea>
+
+        <button class="button primary full" type="submit">식물 생성하기</button>
+      </form>
+
+      <aside class="card result-card" id="resultCard">
+        <p class="eyebrow">Result</p>
+        <h2>아직 심은 감정이 없습니다</h2>
+        <p>폼을 작성하면 이곳에 오늘의 식물과 성장 메시지가 표시됩니다.</p>
+        <div class="result-plant waiting" id="resultPlant"></div>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+  </footer>
+  <script src="js/form.js"></script>
+</body>
+</html>

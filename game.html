@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodGarden | 감정 돌보기</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="main.html">
+      <span class="brand-mark">MG</span>
+      <span>MoodGarden</span>
+    </a>
+    <nav class="nav">
+      <a href="main.html">오늘의 정원</a>
+      <a href="form.html">감정 심기</a>
+      <a class="active" href="game.html">감정 돌보기</a>
+      <a href="team.html">가드너 소개</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <p class="eyebrow">Care My Mood</p>
+      <h1>감정 돌보기</h1>
+      <p>오늘의 감정에 맞는 짧은 돌봄 액션을 수행해 씨앗부터 만개까지 키워보세요.</p>
+    </section>
+
+    <section class="game-layout care-layout">
+      <div class="card game-panel">
+        <div class="game-stats">
+          <div>
+            <span>성장 단계</span>
+            <strong id="stageText">씨앗</strong>
+          </div>
+          <div>
+            <span>성장률</span>
+            <strong id="scoreText">0%</strong>
+          </div>
+          <div>
+            <span>남은 돌봄</span>
+            <strong id="roundText">5회</strong>
+          </div>
+        </div>
+
+        <div class="growth-bar" aria-label="growth progress">
+          <div id="growthFill"></div>
+        </div>
+
+        <div class="game-field care-field" id="gameField">
+          <div class="care-status">
+            <p class="current-plant" id="currentPlantText">오늘의 식물: Sunflower (해바라기)</p>
+            <h2 id="carePrompt">오늘의 감정 식물이 기다리고 있어요.</h2>
+            <p id="careHint">게임 시작을 누르면 감정에 맞는 미니 액션이 나타납니다.</p>
+          </div>
+
+          <div class="game-plant plant-sunflower stage-seed" id="gamePlant">
+            <span></span>
+            <span></span>
+            <strong></strong>
+          </div>
+
+          <div class="action-layer" id="actionLayer"></div>
+        </div>
+
+        <div class="mini-action" id="miniAction">
+          <p>게임 시작을 누르면 식물 화면 안에서 돌봄 액션이 시작됩니다.</p>
+        </div>
+
+        <div class="game-actions">
+          <button class="button primary" id="startBtn" type="button">게임 시작</button>
+          <button class="button secondary" id="resetBtn" type="button">다시 하기</button>
+        </div>
+      </div>
+
+      <aside class="card game-message">
+        <p class="eyebrow">Care Guide</p>
+        <h2 id="gameMessage">감정에 맞는 돌봄 액션을 수행하세요</h2>
+        <p id="gameGuide">각 감정마다 필요한 돌봄 방식이 다릅니다. 미니 액션을 성공하면 식물이 성장합니다.</p>
+        <ul class="score-rules">
+          <li><strong>행복</strong> 구름을 치워 햇빛 비추기</li>
+          <li><strong>평온</strong> 씨앗에서 나오는 음표 잡기</li>
+          <li><strong>피곤</strong> 다가오는 방해 요소 막기</li>
+          <li><strong>슬픔</strong> 말풍선 속 위로 고르기</li>
+          <li><strong>화남</strong> 숨을 길게 내쉬며 진정시키기</li>
+        </ul>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+  </footer>
+  <script src="js/game.js"></script>
+</body>
+</html>
