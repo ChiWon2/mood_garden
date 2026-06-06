@@ -427,19 +427,20 @@ main {
 /* [식물 세부 스타일] 2. 라벤더 (평온) */
 .plant.plant-lavender strong,
 .game-plant.plant-lavender strong {
-  top: 0;
-  left: 34px;
-  width: 52px;
-  height: 122px;
-  border-radius: 999px;
+  top: -4px;
+  left: 25px;
+  width: 70px;
+  height: 150px;
+  border-radius: 0;
   background:
-    radial-gradient(ellipse at 35% 12%, #d8cfff 0 9px, transparent 10px),
-    radial-gradient(ellipse at 68% 20%, #a48be7 0 10px, transparent 11px),
-    radial-gradient(ellipse at 34% 36%, #c2b0f2 0 11px, transparent 12px),
-    radial-gradient(ellipse at 70% 50%, #8f76d8 0 11px, transparent 12px),
-    radial-gradient(ellipse at 38% 66%, #b9a7ee 0 10px, transparent 11px),
-    radial-gradient(ellipse at 64% 82%, #9b84dd 0 10px, transparent 11px);
-  box-shadow: 0 8px 18px rgba(90, 74, 138, 0.18);
+    radial-gradient(ellipse at 39% 20%, #d8cfff 0 7px, transparent 8px),
+    radial-gradient(ellipse at 61% 30%, #a48be7 0 8px, transparent 9px),
+    radial-gradient(ellipse at 39% 43%, #c2b0f2 0 9px, transparent 10px),
+    radial-gradient(ellipse at 62% 56%, #8f76d8 0 9px, transparent 10px),
+    radial-gradient(ellipse at 41% 69%, #b9a7ee 0 8px, transparent 9px),
+    radial-gradient(ellipse at 59% 81%, #9b84dd 0 8px, transparent 9px);
+  filter: none;
+  box-shadow: none;
 }
 
 /* [식물 세부 스타일] 3. 이끼 (피곤) */
@@ -474,19 +475,21 @@ main {
 .plant.plant-hydrangea strong,
 .game-plant.plant-hydrangea strong {
   top: 8px;
-  left: 10px;
-  width: 100px;
-  height: 92px;
-  border-radius: 50%;
+  left: 12px;
+  width: 96px;
+  height: 88px;
+  border-radius: 0;
   background:
-    radial-gradient(circle at 22% 34%, #92b9e8 0 13px, transparent 14px),
-    radial-gradient(circle at 44% 22%, #c2ddfb 0 14px, transparent 15px),
-    radial-gradient(circle at 66% 32%, #abcdf0 0 15px, transparent 16px),
-    radial-gradient(circle at 76% 56%, #7ea8da 0 14px, transparent 15px),
-    radial-gradient(circle at 50% 55%, #9dc2ed 0 16px, transparent 17px),
-    radial-gradient(circle at 30% 70%, #86adde 0 13px, transparent 14px),
-    radial-gradient(circle at 62% 76%, #b7d3f4 0 13px, transparent 14px);
-  box-shadow: 0 8px 18px rgba(65, 103, 143, 0.18);
+    radial-gradient(circle at 50% 20%, #d5e9fb 0 12px, transparent 13px),
+    radial-gradient(circle at 50% 42%, #b8d6f4 0 14px, transparent 15px),
+    radial-gradient(circle at 32% 32%, #9fc5ea 0 13px, transparent 14px),
+    radial-gradient(circle at 68% 32%, #8fb9e3 0 13px, transparent 14px),
+    radial-gradient(circle at 24% 54%, #86adde 0 12px, transparent 13px),
+    radial-gradient(circle at 76% 54%, #a9cef1 0 12px, transparent 13px),
+    radial-gradient(circle at 40% 66%, #7faadb 0 12px, transparent 13px),
+    radial-gradient(circle at 60% 66%, #c2ddfb 0 12px, transparent 13px);
+  filter: drop-shadow(0 8px 10px rgba(65, 103, 143, 0.12));
+  box-shadow: none;
 }
 
 /* [식물 세부 스타일] 5. 선인장 (화남) */
@@ -750,6 +753,21 @@ fieldset {
   padding: 24px;
 }
 
+.game-intro {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.game-intro h2 {
+  margin: 4px 0 0;
+  color: var(--primary-dark);
+  font-size: 1.35rem;
+  line-height: 1.35;
+}
+
 .game-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -760,6 +778,7 @@ fieldset {
   padding: 16px;
   border-radius: var(--radius);
   background: #edf7ea;
+  border: 1px solid rgba(107, 154, 98, 0.16);
 }
 
 .game-stats span {
@@ -973,16 +992,59 @@ fieldset {
 }
 
 .current-plant {
-  display: inline-flex;
-  align-items: center;
-  min-height: 34px;
+  display: grid;
+  gap: 4px;
+  width: 100%;
   margin: 0 0 14px;
-  padding: 0 12px;
-  border-radius: 999px;
+  padding: 12px;
+  border: 1px solid rgba(107, 154, 98, 0.16);
+  border-radius: var(--radius);
   color: var(--primary-dark);
   background: #eaf5e8;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.current-plant .plant-label {
+  color: var(--muted);
+  font-size: 0.76rem;
   font-weight: 800;
+}
+
+.current-plant strong {
+  color: var(--primary-dark);
+  font-size: 1rem;
+  line-height: 1.25;
+  word-break: keep-all;
+}
+
+.current-plant span:last-child {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.current-plant.current-sunflower,
+.current-plant.current-cactus {
+  gap: 3px;
+  padding: 9px 10px;
+  font-size: 0.8rem;
+}
+
+.current-plant.current-sunflower .plant-label,
+.current-plant.current-cactus .plant-label {
+  font-size: 0.72rem;
+}
+
+.current-plant.current-sunflower strong,
+.current-plant.current-cactus strong {
+  font-size: 0.86rem;
+  line-height: 1.2;
+}
+
+.current-plant.current-sunflower span:last-child,
+.current-plant.current-cactus span:last-child {
+  font-size: 0.78rem;
 }
 
 .care-field {
@@ -994,6 +1056,7 @@ fieldset {
 .care-status {
   position: relative;
   z-index: 2;
+  min-width: 0;
   align-self: stretch;
   display: flex;
   flex-direction: column;
@@ -1008,13 +1071,40 @@ fieldset {
 .care-status h2 {
   margin: 0 0 12px;
   color: var(--primary-dark);
-  font-size: 1.7rem;
+  font-size: 1.46rem;
   line-height: 1.35;
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 .care-status p {
   color: var(--muted);
   line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+.game-field.sigh-mode .care-status {
+  justify-content: flex-start;
+  padding: 14px;
+}
+
+.game-field.sigh-mode .current-plant {
+  gap: 2px;
+  margin-bottom: 8px;
+  padding: 8px 9px;
+}
+
+.game-field.sigh-mode .care-status h2 {
+  margin-bottom: 6px;
+  font-size: 1.06rem;
+  line-height: 1.22;
+}
+
+.game-field.sigh-mode .care-status p {
+  font-size: 0.88rem;
+  line-height: 1.36;
 }
 
 .mini-action {
@@ -1039,6 +1129,20 @@ fieldset {
 
 .action-layer button {
   pointer-events: auto;
+  touch-action: manipulation;
+}
+
+.action-layer button:focus-visible,
+.game-actions .button:focus-visible,
+.game-intro .button:focus-visible {
+  outline: 3px solid rgba(63, 125, 84, 0.32);
+  outline-offset: 3px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+  transform: none;
 }
 
 .field-sun {
@@ -1075,6 +1179,19 @@ fieldset {
   transform: translateY(-3px);
 }
 
+.sky-cloud:active,
+.seed-note:active,
+.threat:active,
+.sigh-button:active {
+  transform: translateX(-50%) scale(0.96);
+}
+
+.sky-cloud:active,
+.threat:active,
+.speech-bubble:active {
+  transform: scale(0.96);
+}
+
 .sky-cloud.cleared {
   opacity: 0;
   transform: translateY(-22px) scale(0.8);
@@ -1102,6 +1219,12 @@ fieldset {
   animation: note-rise 1.4s ease-out forwards;
 }
 
+.seed-note:hover,
+.speech-bubble:hover,
+.sigh-button:hover {
+  filter: brightness(1.03);
+}
+
 @keyframes note-rise {
   0% { opacity: 0; transform: translate(-50%, 18px) scale(0.8); }
   18% { opacity: 1; }
@@ -1123,6 +1246,10 @@ fieldset {
   animation: threat-move linear forwards;
 }
 
+.threat:hover {
+  filter: brightness(0.98);
+}
+
 .threat-1 { top: 48px; left: 18px; --tx: 250px; --ty: 230px; }
 .threat-2 { top: 58px; right: 24px; --tx: -260px; --ty: 220px; }
 .threat-3 { bottom: 28px; left: 36px; --tx: 250px; --ty: -80px; }
@@ -1139,32 +1266,32 @@ fieldset {
   to { transform: translate(var(--tx), var(--ty)) scale(0.88); }
 }
 
-.speech-line {
+.speech-options {
   position: absolute;
-  left: 50%;
-  bottom: 148px;
-  width: 2px;
-  height: 76px;
-  background: rgba(65, 103, 143, 0.22);
+  left: 69%;
+  bottom: 28px;
+  z-index: 6;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(360px, 42%);
   transform: translateX(-50%);
+  animation: bubble-in 0.22s ease;
 }
 
 .speech-bubble {
-  position: absolute;
-  left: 50%;
-  bottom: 224px;
-  max-width: min(280px, 70%);
-  min-height: 52px;
-  padding: 0 18px;
+  min-height: 38px;
+  padding: 0 10px;
   border: 1px solid #b8cee8;
-  border-radius: 18px;
+  border-radius: var(--radius);
   color: #41678f;
   background: #f7f9ff;
-  box-shadow: 0 14px 24px rgba(65, 103, 143, 0.14);
+  box-shadow: 0 10px 16px rgba(65, 103, 143, 0.12);
   cursor: pointer;
+  font-size: 0.82rem;
   font-weight: 900;
-  transform: translateX(-50%);
-  animation: bubble-in 0.22s ease;
+  line-height: 1.2;
+  word-break: keep-all;
 }
 
 .speech-bubble::after {
@@ -1172,6 +1299,7 @@ fieldset {
   position: absolute;
   left: 50%;
   bottom: -10px;
+  display: none;
   width: 18px;
   height: 18px;
   background: inherit;
@@ -1187,8 +1315,8 @@ fieldset {
 
 .sigh-cloud {
   position: absolute;
-  left: 72%;
-  bottom: 118px;
+  left: 69%;
+  bottom: 96px;
   width: 150px;
   height: 58px;
   border-radius: 999px;
@@ -1203,9 +1331,9 @@ fieldset {
 
 .sigh-meter {
   position: absolute;
-  left: 72%;
-  bottom: 24px;
-  width: min(260px, 44%);
+  left: 69%;
+  bottom: 8px;
+  width: min(300px, 44%);
   height: 18px;
   border-radius: 999px;
   background: #dce8d6;
@@ -1223,6 +1351,15 @@ fieldset {
   background: rgba(63, 125, 84, 0.32);
 }
 
+.sigh-meter::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(63, 125, 84, 0.22);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
 .sigh-meter i {
   display: block;
   width: 0%;
@@ -1233,8 +1370,8 @@ fieldset {
 
 .sigh-button {
   position: absolute;
-  left: 72%;
-  bottom: 54px;
+  left: 69%;
+  bottom: 36px;
   min-height: 46px;
   padding: 0 18px;
   border: 0;
@@ -1270,6 +1407,14 @@ fieldset {
   animation: fail-shake 0.34s ease;
 }
 
+.plant-grow-pop {
+  animation: plant-grow-pop 0.46s ease;
+}
+
+.plant-wilt-pop {
+  animation: plant-wilt-pop 0.36s ease;
+}
+
 @keyframes success-pulse {
   0% { box-shadow: 0 0 0 rgba(139, 207, 139, 0); }
   45% { box-shadow: 0 0 0 6px rgba(139, 207, 139, 0.24); }
@@ -1281,6 +1426,17 @@ fieldset {
   25% { transform: translateX(-5px); }
   50% { transform: translateX(5px); }
   75% { transform: translateX(-3px); }
+}
+
+@keyframes plant-grow-pop {
+  0% { transform: translateX(-50%) scale(1); }
+  45% { transform: translateX(-50%) scale(1.08); }
+  100% { transform: translateX(-50%) scale(1); }
+}
+
+@keyframes plant-wilt-pop {
+  0%, 100% { transform: translateX(-50%) rotate(0deg); }
+  45% { transform: translateX(-50%) rotate(-3deg) scale(0.96); }
 }
 
 .team-grid {
@@ -1468,6 +1624,15 @@ fieldset {
     grid-template-columns: 1fr;
   }
 
+  .game-intro {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .game-intro .button {
+    width: 100%;
+  }
+
   .field-sun {
     top: 22px;
     right: 22px;
@@ -1490,14 +1655,30 @@ fieldset {
   .threat-3 { --tx: 150px; --ty: -70px; }
   .threat-4 { --tx: -140px; --ty: -80px; }
 
+  .speech-options {
+    left: 50%;
+    bottom: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(390px, 86%);
+  }
+
   .sigh-cloud,
   .sigh-meter,
   .sigh-button {
     left: 50%;
   }
 
+  .sigh-cloud {
+    bottom: 104px;
+  }
+
+  .sigh-button {
+    bottom: 48px;
+  }
+
   .sigh-meter {
-    width: 72%;
+    bottom: 18px;
+    width: 78%;
   }
 }
 
@@ -1624,8 +1805,11 @@ fieldset {
   }
 
   .speech-bubble {
-    max-width: 84%;
-    font-size: 0.9rem;
+    width: 100%;
+    max-width: none;
+    min-height: 36px;
+    padding: 0 8px;
+    font-size: 0.78rem;
   }
 
   .sigh-meter {

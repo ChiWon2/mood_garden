@@ -31,12 +31,20 @@
     <section class="page-title">
       <p class="eyebrow">Care My Mood</p>
       <h1>감정 돌보기</h1>
-      <p>오늘의 감정에 맞는 짧은 돌봄 액션을 수행해 씨앗부터 만개까지 키워보세요.</p>
+      <p>오늘 심은 감정 식물을 짧은 미니 케어로 돌봐 보세요. 작은 행동에 따라 성장률이 바로 변하고, 식물은 씨앗에서 만개까지 자라납니다.</p>
     </section>
 
     <section class="game-layout care-layout">
       <div class="card game-panel">
-        <div class="game-stats">
+        <div class="game-intro">
+          <div>
+            <p class="eyebrow">5 Minute Care</p>
+            <h2 id="gameTitle">오늘의 감정 식물 케어</h2>
+          </div>
+          <a class="button secondary" href="form.html">새 감정 심기</a>
+        </div>
+
+        <div class="game-stats" aria-label="게임 상태">
           <div>
             <span>성장 단계</span>
             <strong id="stageText">씨앗</strong>
@@ -51,28 +59,32 @@
           </div>
         </div>
 
-        <div class="growth-bar" aria-label="growth progress">
+        <div class="growth-bar" aria-label="감정 식물 성장률">
           <div id="growthFill"></div>
         </div>
 
         <div class="game-field care-field" id="gameField">
           <div class="care-status">
-            <p class="current-plant" id="currentPlantText">오늘의 식물: Sunflower (해바라기)</p>
-            <h2 id="carePrompt">오늘의 감정 식물이 기다리고 있어요.</h2>
-            <p id="careHint">게임 시작을 누르면 감정에 맞는 미니 액션이 나타납니다.</p>
+            <p class="current-plant" id="currentPlantText">
+              <span class="plant-label">오늘의 식물</span>
+              <strong>Sunflower (해바라기)</strong>
+              <span>감정 행복 · 강도 보통</span>
+            </p>
+            <h2 id="carePrompt">오늘의 감정 식물이 돌봄을 기다리고 있어요.</h2>
+            <p id="careHint">게임 시작을 누르면 감정에 맞는 미니 케어가 식물 주변에 나타납니다.</p>
           </div>
 
-          <div class="game-plant plant-sunflower stage-seed" id="gamePlant">
+          <div class="game-plant plant-sunflower stage-seed" id="gamePlant" aria-label="감정 식물">
             <span></span>
             <span></span>
             <strong></strong>
           </div>
 
-          <div class="action-layer" id="actionLayer"></div>
+          <div class="action-layer" id="actionLayer" aria-live="polite"></div>
         </div>
 
-        <div class="mini-action" id="miniAction">
-          <p>게임 시작을 누르면 식물 화면 안에서 돌봄 액션이 시작됩니다.</p>
+        <div class="mini-action" id="miniAction" aria-live="polite">
+          <p>먼저 감정을 심었다면 그 식물이 자동으로 불러와집니다. 바로 시작해도 기본 해바라기로 체험할 수 있어요.</p>
         </div>
 
         <div class="game-actions">
@@ -83,14 +95,14 @@
 
       <aside class="card game-message">
         <p class="eyebrow">Care Guide</p>
-        <h2 id="gameMessage">감정에 맞는 돌봄 액션을 수행하세요</h2>
-        <p id="gameGuide">각 감정마다 필요한 돌봄 방식이 다릅니다. 미니 액션을 성공하면 식물이 성장합니다.</p>
+        <h2 id="gameMessage">감정에 맞는 돌봄 액션을 수행하세요.</h2>
+        <p id="gameGuide">행복, 평온, 피곤, 슬픔, 화남마다 다른 미니게임이 준비되어 있습니다. 성공하면 식물이 성장하고, 실패하면 성장률이 조금 줄어듭니다.</p>
         <ul class="score-rules">
           <li><strong>행복</strong> 구름을 치워 햇빛 비추기</li>
-          <li><strong>평온</strong> 씨앗에서 나오는 음표 잡기</li>
-          <li><strong>피곤</strong> 다가오는 방해 요소 막기</li>
-          <li><strong>슬픔</strong> 말풍선 속 위로 고르기</li>
-          <li><strong>화남</strong> 숨을 길게 내쉬며 진정시키기</li>
+          <li><strong>평온</strong> 라벤더에서 떠오르는 음표 잡기</li>
+          <li><strong>피곤</strong> 방해 요소가 닿기 전에 막기</li>
+          <li><strong>슬픔</strong> 식물에게 필요한 따뜻한 말 고르기</li>
+          <li><strong>화남</strong> 숨을 깊게 내쉬며 안정 구간에 멈추기</li>
         </ul>
       </aside>
     </section>
