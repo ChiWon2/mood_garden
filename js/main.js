@@ -2,7 +2,7 @@ const mainPlant = document.querySelector("#mainPlant");
 const gardenPlants = document.querySelectorAll(".garden-scene .plant");
 const gardenScene = document.querySelector(".garden-scene");
 
-// #region SnapScrollY sections except heroSection
+// #region SnapScrollY
 const points = document.querySelectorAll(".snap-point");
 
 let currentIndex = -1;
