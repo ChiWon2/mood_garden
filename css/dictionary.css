@@ -1,0 +1,351 @@
+/* 식물 도감 페이지 전용 스타일 */
+
+/* 1. 레이아웃 & 기본 구조 */
+
+/* 도감용 좌우 분할 그리드 레이아웃 (우측 설명이 넓게 배치됨) */
+.split-layout-rev {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+  padding-bottom: 68px;
+}
+
+/* 왼쪽 열: 개요 카드와 BGM 카드를 세로로 정렬하는 컨테이너 */
+.aside-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+/* 2. 공통 카드 스타일 */
+
+/* 도감용 분할 레이아웃 내부 기본 카드 컴포넌트 */
+.dictionary-card {
+  padding: 24px;
+}
+
+
+/* 3. 감정 선택 탭 스타일 */
+
+/* 상단 5대 감정 선택 버튼 래퍼 */
+.dictionary-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* 개별 감정 선택 탭 버튼 */
+.dictionary-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px rgba(62, 99, 69, 0.05);
+  outline: none;
+}
+
+/* 탭 버튼 마우스 호버 효과 */
+.dictionary-tab:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(62, 99, 69, 0.1);
+  border-color: var(--primary);
+}
+
+/* 활성화된 감정 탭 스타일 */
+.dictionary-tab.active {
+  background: #eaf5e8;
+  border-color: var(--primary-dark);
+  box-shadow: 0 10px 20px rgba(63, 125, 84, 0.14);
+}
+
+/* 감정 한글 태그 배지 (상단 탭 및 왼쪽 카드 공용) */
+.tab-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+/* 탭 버튼 하단 식물 국문 명칭 */
+.tab-name {
+  margin-top: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+
+/* 4. 좌측 개요 카드 내부 콘텐츠 */
+
+/* 큰 식물 그래픽이 위치하는 배경 박스 */
+.plant-display-box {
+  position: relative;
+  display: grid;
+  align-items: end;
+  justify-content: center;
+  height: 240px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #eaf8ec 0%, #f9fbef 62%, #dfedca 100%);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+/* 개요 텍스트 영역 */
+.overview-info {
+  text-align: center;
+}
+
+/* 식물 이름 (한글) */
+.overview-info h2 {
+  margin: 12px 0 2px;
+  font-size: 1.7rem;
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+/* 식물 이름 (영문) */
+.overview-info .eng-name {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* 감정 배지와 키워드 배지들을 가로 정렬하는 컨테이너 */
+.overview-badges-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+  align-items: center;
+}
+
+/* 식물 설명 키워드 배지 */
+.overview-desc-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #edf7ea;
+  color: var(--primary-dark);
+  font-weight: 800;
+  font-size: 0.82rem;
+}
+
+/* 하단 버튼 액션 영역 */
+.overview-actions {
+  margin-top: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+
+/* 5. BGM 플레이어 카드 스타일 */
+
+/* 힐링 BGM 카드 영역 */
+.bgm-card {
+  padding: 20px;
+}
+
+/* BGM 타이틀 */
+.bgm-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0 0 12px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* 브라우저 기본 오디오 컨트롤 커스텀 스타일 */
+#bgmPlayer {
+  width: 100%;
+  height: 36px;
+  outline: none;
+  border-radius: 999px;
+}
+
+
+/* 6. 우측 상세 설명 영역 */
+
+/* 개별 설명 섹션 블록 (꽃말, 메시지, 가이드 등) */
+.desc-section {
+  padding-bottom: 22px;
+}
+
+/* 마지막 섹션을 제외한 모든 섹션 아래에 경계선 설정 */
+.desc-section:not(:last-child) {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 22px;
+}
+
+/* 성장 단계 타임라인 전용 특수 섹션 (외곽선 및 패딩 해제) */
+.desc-section.stage-section {
+  border: none;
+  padding-bottom: 0;
+}
+
+/* 설명 섹션 제목 */
+.desc-section h2 {
+  margin: 0 0 12px;
+  font-size: 1.25rem;
+  color: var(--primary-dark);
+  font-weight: 800;
+}
+
+/* 설명 섹션 내용 본문 */
+.desc-section p {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ink);
+  white-space: pre-line;
+}
+
+
+/* 7. 유튜브 비디오 테라피 영역 */
+
+/* 16:9 반응형 비율을 유지하는 비디오 래퍼 */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: #000;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+
+/* 비디오 반응형 Iframe */
+#detailVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* 8. 성장 단계 타임라인 & 미리보기 */
+
+/* 성장 단계 미리보기 리스트 그리드 */
+.stage-preview-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+/* 개별 성장 단계 미리보기 버튼 아이템 */
+.stage-preview-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fbfcf9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* 성장 단계 마우스 호버 효과 */
+.stage-preview-item:hover {
+  border-color: var(--primary);
+  background: #ffffff;
+}
+
+/* 현재 선택되어 활성화된 성장 단계 아이템 */
+.stage-preview-item.active {
+  border-color: var(--primary-dark);
+  background: #eaf5e8;
+  box-shadow: 0 4px 10px rgba(63, 125, 84, 0.08);
+}
+
+/* 미니 식물 그래픽 영역 */
+.stage-preview-visual {
+  position: relative;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+}
+
+/* 성장 단계 국문 라벨 */
+.stage-preview-label {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+/* 활성화된 성장 단계의 라벨 스타일 강조 */
+.stage-preview-item.active .stage-preview-label {
+  color: var(--primary-dark);
+}
+
+
+/* 9. 식물 그래픽 오버라이드 */
+
+/* 메인 대형 식물 그래픽 위치 및 축척 맞춤 */
+.plant-display-box .game-plant {
+  grid-column: auto !important;
+  grid-row: auto !important;
+  align-self: auto !important;
+  left: 50% !important;
+  transform: translateX(-50%) scale(0.95) !important;
+}
+
+/* 타임라인 축소형 식물 그래픽 배치 및 스케일 조정 */
+.stage-preview-visual .game-plant {
+  position: absolute !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  align-self: auto !important;
+  left: 50% !important;
+  bottom: 0px !important;
+  transform: translateX(-50%) scale(0.38) !important;
+  transform-origin: bottom center !important;
+}
+
+
+/* 10. 반응형 미디어 쿼리 */
+
+/* 1. 태블릿 및 가로폭이 좁은 데스크톱 (최대 가로폭: 960px) - 상단 탭을 3열로 분할 */
+@media (max-width: 960px) {
+  .dictionary-tabs {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+}
+
+/* 2. 모바일/태블릿 분할 뷰 통합 (최대 가로폭: 920px) - 좌우 레이아웃을 1열 세로로 합침 */
+@media (max-width: 920px) {
+  .split-layout-rev {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 3. 일반 모바일 뷰 (최대 가로폭: 768px) - 상단 탭을 2열로 분할 */
+@media (max-width: 768px) {
+  .dictionary-tabs {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

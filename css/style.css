@@ -1,3 +1,6 @@
+/* ==========================================================================
+   1. 공통/글로벌 스타일 시스템 및 변수 설정
+   ========================================================================== */
 :root {
   --primary: #8bcf8b;
   --primary-dark: #3f7d54;
@@ -42,6 +45,9 @@ main {
   margin: 0 auto;
 }
 
+/* ==========================================================================
+   2. 헤더 네비게이션 및 브랜드 로고 영역
+   ========================================================================== */
 .site-header {
   position: sticky;
   top: 0;
@@ -113,7 +119,7 @@ main {
   background: #eaf5e8;
 }
 
-/* Mobile Toggle Button */
+/* 모바일 토글 메뉴 버튼 */
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -138,6 +144,9 @@ main {
 }
 
 
+/* ==========================================================================
+   3. 히어로 및 인트로 섹션
+   ========================================================================== */
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.618fr) minmax(320px, 1fr);
@@ -182,6 +191,9 @@ main {
   margin-top: 26px;
 }
 
+/* ==========================================================================
+   4. 버튼 및 상호작용 요소 디자인
+   ========================================================================== */
 .button {
   display: inline-flex;
   align-items: center;
@@ -215,6 +227,9 @@ main {
   width: 100%;
 }
 
+/* ==========================================================================
+   5. 메인 정원 씬 연출 (배경 그라데이션, 해, 땅)
+   ========================================================================== */
 .garden-scene {
   position: relative;
   min-height: 460px;
@@ -246,6 +261,9 @@ main {
   background: #bad89b;
 }
 
+/* ==========================================================================
+   6. 식물 그래픽 렌더링 엔진 (줄기, 잎, 꽃잎 기본 골격)
+   ========================================================================== */
 .plant,
 .game-plant {
   position: absolute;
@@ -322,6 +340,7 @@ main {
   transition: opacity 0.35s ease, transform 0.5s ease;
 }
 
+/* [식물 세부 스타일] 1. 해바라기 (행복) */
 .plant.plant-sunflower strong,
 .game-plant.plant-sunflower strong {
   border-radius: 50%;
@@ -346,6 +365,7 @@ main {
     #7a5525;
 }
 
+/* [식물 세부 스타일] 2. 라벤더 (평온) */
 .plant.plant-lavender strong,
 .game-plant.plant-lavender strong {
   top: 0;
@@ -363,6 +383,7 @@ main {
   box-shadow: 0 8px 18px rgba(90, 74, 138, 0.18);
 }
 
+/* [식물 세부 스타일] 3. 이끼 (피곤) */
 .plant.plant-moss strong,
 .game-plant.plant-moss strong {
   top: auto;
@@ -390,6 +411,7 @@ main {
   display: none;
 }
 
+/* [식물 세부 스타일] 4. 수국 (슬픔) */
 .plant.plant-hydrangea strong,
 .game-plant.plant-hydrangea strong {
   top: 8px;
@@ -408,6 +430,7 @@ main {
   box-shadow: 0 8px 18px rgba(65, 103, 143, 0.18);
 }
 
+/* [식물 세부 스타일] 5. 선인장 (화남) */
 .plant.plant-cactus strong,
 .game-plant.plant-cactus strong {
   top: auto;
@@ -445,6 +468,9 @@ main {
   transform: translateX(-50%);
 }
 
+/* ==========================================================================
+   7. 공통 타이포그래피, 레이아웃 그리드, 카드 요소
+   ========================================================================== */
 .section,
 .page-title {
   padding: 64px 0;
@@ -552,6 +578,9 @@ main {
   background: var(--primary-dark);
 }
 
+/* ==========================================================================
+   8. 감정 심기 폼 레이아웃 및 입력 필드
+   ========================================================================== */
 .form-layout,
 .game-layout {
   display: grid;
@@ -655,6 +684,9 @@ fieldset {
 .result-plant.hydrangea::after { background: #92b9e8; }
 .result-plant.cactus::after { background: #78a84d; border-radius: 42% 42% 48% 48%; }
 
+/* ==========================================================================
+   9. 감정 돌보기 게임 콘솔 패널 및 게임 스테이터스
+   ========================================================================== */
 .game-panel {
   padding: 24px;
 }
@@ -714,6 +746,9 @@ fieldset {
   background: linear-gradient(180deg, #e8f8ef, #fbf8e8 72%, #dcefc3);
 }
 
+/* ==========================================================================
+   10. 게임 내 식물의 성장 단계별 제어 엔진 (씨앗 -> 새싹 -> 봉우리 -> 만개)
+   ========================================================================== */
 .game-plant {
   position: relative;
   left: 50%;
@@ -821,6 +856,36 @@ fieldset {
 .game-plant.plant-cactus::before,
 .game-plant.plant-cactus span {
   display: none;
+}
+
+/* ==========================================================================
+   [식물 개별 성장 단계 예외 제어] 줄기나 잎이 없는 이끼 및 선인장 오버라이드
+   ========================================================================== */
+
+/* 1. 이끼 새싹 및 봉우리 단계 오버라이드 */
+.game-plant.plant-moss.stage-sprout strong {
+  opacity: 1;
+  transform: scale(0.35);
+}
+.game-plant.plant-moss.stage-bud strong {
+  opacity: 1;
+  transform: scale(0.68);
+}
+
+/* 2. 선인장 새싹 및 봉우리 단계 오버라이드 */
+.game-plant.plant-cactus.stage-sprout strong {
+  opacity: 1;
+  transform: scale(0.32);
+}
+.game-plant.plant-cactus.stage-sprout strong::before {
+  display: none;
+}
+.game-plant.plant-cactus.stage-bud strong {
+  opacity: 1;
+  transform: scale(0.65);
+}
+.game-plant.plant-cactus.stage-bud strong::before {
+  height: 42px;
 }
 
 @keyframes bloom-open {
@@ -1178,6 +1243,9 @@ fieldset {
   font-weight: 800;
 }
 
+/* ==========================================================================
+   11. 하단 푸터 디자인
+   ========================================================================== */
 .site-footer {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
@@ -1186,6 +1254,9 @@ fieldset {
   border-top: 1px solid var(--line);
 }
 
+/* ==========================================================================
+   12. 미디어 쿼리 - 반응형 웹 레이아웃 제어
+   ========================================================================== */
 @media (max-width: 1440px) {
   main,
   .site-header,
@@ -1261,7 +1332,7 @@ fieldset {
     background: #eaf5e8;
   }
 
-  /* Hamburger transform when open */
+  /* 모바일 햄버거 메뉴 오픈 시 애니메이션 */
   .menu-toggle.open span:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }

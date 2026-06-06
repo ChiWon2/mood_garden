@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MoodGarden | 식물 도감</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/dictionary.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="main.html" aria-label="MoodGarden main">
+        <span class="brand-mark">MG</span>
+        <span>MoodGarden</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="nav" id="siteNav">
+        <a href="main.html">오늘의 정원</a>
+        <a href="form.html">감정 심기</a>
+        <a href="game.html">감정 돌보기</a>
+        <a href="burn.html">감정 태우기</a>
+        <a class="active" href="dictionary.html">식물 도감</a>
+        <a href="team.html">가드너 소개</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-title">
+        <p class="eyebrow">Mood Plant Dictionary</p>
+        <h1>식물 정보</h1>
+        <p>
+          MoodGarden에서 피어나는 다섯 가지 감정 식물의 상세 프로필을
+          확인하세요.
+        </p>
+      </section>
+
+      <!-- 상단 선택 탭 -->
+      <div class="dictionary-tabs">
+        <button class="dictionary-tab active" data-plant="happy">
+          <span class="tab-tag sunflower">행복</span>
+          <span class="tab-name">해바라기</span>
+        </button>
+
+        <button class="dictionary-tab" data-plant="calm">
+          <span class="tab-tag lavender">평온</span>
+          <span class="tab-name">라벤더</span>
+        </button>
+
+        <button class="dictionary-tab" data-plant="tired">
+          <span class="tab-tag moss">피곤</span>
+          <span class="tab-name">이끼</span>
+        </button>
+
+        <button class="dictionary-tab" data-plant="sad">
+          <span class="tab-tag hydrangea">슬픔</span>
+          <span class="tab-name">수국</span>
+        </button>
+
+        <button class="dictionary-tab" data-plant="angry">
+          <span class="tab-tag cactus">화남</span>
+          <span class="tab-name">선인장</span>
+        </button>
+      </div>
+
+      <!-- 메인 콘텐츠 분할 레이아웃 -->
+      <section class="split-layout-rev">
+        <!-- 왼쪽 열: 개요 및 BGM 카드 영역 -->
+        <div class="aside-column">
+          <!-- 개요 카드 -->
+          <div class="card dictionary-card">
+            <div class="plant-display-box">
+              <div
+                class="game-plant plant-sunflower stage-bloom"
+                id="detailPlantVisual"
+              >
+                <span></span>
+                <span></span>
+                <strong></strong>
+              </div>
+            </div>
+            <div class="overview-info">
+              <p class="eyebrow">Mood Garden Plant</p>
+              <h2 id="overviewPlantName">해바라기</h2>
+              <p class="eng-name" id="overviewEngName">Sunflower</p>
+              <div class="overview-badges-container">
+                <span class="tab-tag sunflower" id="overviewMoodBadge"
+                  >행복</span
+                >
+                <div class="overview-desc-badge" id="overviewDescBadge">
+                  밝음 · 성장 · 긍정
+                </div>
+              </div>
+              <div class="overview-actions">
+                <a class="button primary" href="game.html" id="gameBtn"
+                  >식물 돌보기</a
+                >
+                <a
+                  class="button secondary"
+                  href="form.html?mood=happy"
+                  id="formBtn"
+                  >이 감정 심기</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- BGM 카드 -->
+          <div class="card bgm-card">
+            <h3><span>🎧</span> 감정 힐링 BGM</h3>
+            <audio id="bgmPlayer" controls loop></audio>
+          </div>
+        </div>
+
+        <!-- 오른쪽 열: 설명 카드 -->
+        <div class="card dictionary-card">
+          <!-- 추천 동영상 섹션 -->
+          <div class="desc-section" id="videoSection">
+            <h2>감정 테라피 추천 영상</h2>
+            <div class="video-container">
+              <iframe
+                id="detailVideo"
+                src=""
+                allow="
+                  accelerometer;
+                  autoplay;
+                  clipboard-write;
+                  encrypted-media;
+                  gyroscope;
+                  picture-in-picture;
+                "
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="desc-section">
+            <h2>꽃말 & 의미</h2>
+            <p id="detailMeaning">꽃말 & 의미 정보</p>
+          </div>
+
+          <div class="desc-section">
+            <h2>마음의 메시지</h2>
+            <p id="detailMessage">마음의 메시지 정보</p>
+          </div>
+
+          <div class="desc-section">
+            <h2>돌봄 가이드</h2>
+            <p id="detailCare">돌봄 가이드 정보</p>
+          </div>
+
+          <div class="desc-section">
+            <h2>미니게임</h2>
+            <p id="detailGameInfo">미니게임 정보</p>
+          </div>
+
+          <!-- 설명 영역 내부 성장 단계 타임라인 -->
+          <div class="desc-section stage-section">
+            <h2>성장 단계별 모습</h2>
+            <div class="stage-preview-list">
+              <!-- 씨앗 단계 -->
+              <div class="stage-preview-item" data-stage="stage-seed">
+                <div class="stage-preview-visual">
+                  <div class="game-plant plant-sunflower stage-seed">
+                    <span></span>
+                    <span></span>
+                    <strong></strong>
+                  </div>
+                </div>
+                <span class="stage-preview-label">씨앗</span>
+              </div>
+
+              <!-- 새싹 단계 -->
+              <div class="stage-preview-item" data-stage="stage-sprout">
+                <div class="stage-preview-visual">
+                  <div class="game-plant plant-sunflower stage-sprout">
+                    <span></span>
+                    <span></span>
+                    <strong></strong>
+                  </div>
+                </div>
+                <span class="stage-preview-label">새싹</span>
+              </div>
+
+              <!-- 봉우리 단계 -->
+              <div class="stage-preview-item" data-stage="stage-bud">
+                <div class="stage-preview-visual">
+                  <div class="game-plant plant-sunflower stage-bud">
+                    <span></span>
+                    <span></span>
+                    <strong></strong>
+                  </div>
+                </div>
+                <span class="stage-preview-label">봉우리</span>
+              </div>
+
+              <!-- 만개 단계 -->
+              <div class="stage-preview-item active" data-stage="stage-bloom">
+                <div class="stage-preview-visual">
+                  <div class="game-plant plant-sunflower stage-bloom">
+                    <span></span>
+                    <span></span>
+                    <strong></strong>
+                  </div>
+                </div>
+                <span class="stage-preview-label">만개</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/dictionary.js"></script>
+  </body>
+</html>
