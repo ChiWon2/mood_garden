@@ -38,3 +38,16 @@ function loadMainPlant() {
 }
 
 loadMainPlant();
+
+// Header menu toggle for mobile
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menuToggle");
+  const siteNav = document.getElementById("siteNav");
+  if (menuToggle && siteNav) {
+    menuToggle.addEventListener("click", function () {
+      siteNav.classList.add("has-transition");
+      this.classList.toggle("open");
+      siteNav.classList.toggle("open");
+    });
+  }
+});

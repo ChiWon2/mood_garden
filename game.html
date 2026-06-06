@@ -8,14 +8,21 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="main.html">
+    <a class="brand" href="main.html" aria-label="MoodGarden main">
       <span class="brand-mark">MG</span>
       <span>MoodGarden</span>
     </a>
-    <nav class="nav">
+    <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="nav" id="siteNav">
       <a href="main.html">오늘의 정원</a>
       <a href="form.html">감정 심기</a>
       <a class="active" href="game.html">감정 돌보기</a>
+      <a href="burn.html">감정 태우기</a>
+      <a href="dictionary.html">식물 도감</a>
       <a href="team.html">가드너 소개</a>
     </nav>
   </header>
@@ -92,6 +99,7 @@
   <footer class="site-footer">
     <p>MoodGarden Team Project · HTML CSS JavaScript</p>
   </footer>
+  <script src="js/main.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>
