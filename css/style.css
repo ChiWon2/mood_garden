@@ -746,6 +746,58 @@ fieldset {
 .result-plant.hydrangea::after { background: #92b9e8; }
 .result-plant.cactus::after { background: #78a84d; border-radius: 42% 42% 48% 48%; }
 
+.result-plant-preview {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: 220px;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(221, 232, 217, 0.9);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(242, 209, 107, 0.2), transparent 7rem),
+    linear-gradient(180deg, #fbfdf8 0%, #edf7e9 100%);
+}
+
+.result-plant-preview::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 150px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(63, 125, 84, 0.14);
+  transform: translateX(-50%);
+}
+
+.result-plant-preview.waiting::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  width: 34px;
+  height: 24px;
+  border-radius: 55% 45% 58% 42%;
+  background: #b9945f;
+  box-shadow: inset -5px -4px 0 rgba(122, 85, 37, 0.18);
+  transform: translateX(-50%) rotate(-10deg);
+}
+
+.result-plant-preview .game-plant {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
+  transform: scale(0.82);
+  transform-origin: bottom center;
+}
+
+.result-plant-preview .game-plant.plant-lavender {
+  transform: scale(0.76);
+}
+
 /* ==========================================================================
    9. 감정 돌보기 게임 콘솔 패널 및 게임 스테이터스
    ========================================================================== */

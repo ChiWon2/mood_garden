@@ -54,6 +54,14 @@ const moodData = {
 const form = document.querySelector("#moodForm");
 const resultCard = document.querySelector("#resultCard");
 
+function getPlantHTML(gameClass) {
+  if (gameClass === "plant-moss" || gameClass === "plant-cactus") {
+    return "<strong></strong>";
+  }
+
+  return "<span></span><span></span><strong></strong>";
+}
+
 function escapeHTML(value) {
   return value
     .replaceAll("&", "&amp;")
@@ -76,7 +84,7 @@ form.addEventListener("submit", function (event) {
       <p class="eyebrow">Check</p>
       <h2>입력 내용을 확인해 주세요</h2>
       <p>이름, 감정, 감정 강도, 오늘의 한 줄을 모두 입력해야 식물이 생성됩니다.</p>
-      <div class="result-plant waiting" id="resultPlant"></div>
+      <div class="result-plant-preview waiting" id="resultPlant" aria-label="아직 생성되지 않은 감정 식물"></div>
     `;
     return;
   }
@@ -104,7 +112,11 @@ form.addEventListener("submit", function (event) {
     <p>오늘의 한 줄: ${safeNote}</p>
     <p>이 식물은 오늘의 정원과 감정 돌보기 게임에 바로 반영됩니다.</p>
     <a class="button secondary full" href="game.html">이 식물 키우러 가기</a>
-    <div class="result-plant ${selected.className}" id="resultPlant"></div>
+    <div class="result-plant-preview" id="resultPlant" aria-label="${selected.korean} 감정 식물">
+      <div class="game-plant ${selected.gameClass} stage-bloom">
+        ${getPlantHTML(selected.gameClass)}
+      </div>
+    </div>
   `;
 });
 
