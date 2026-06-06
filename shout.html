@@ -8,23 +8,28 @@
 </head>
 <body>
 
-  <header class="site-header" id="siteHeader">
-    <div class="header-top-bar">
-      <a class="brand" href="main.html" aria-label="MoodGarden main">
-        <span class="brand-mark">MG</span>
-        <span>MoodGarden</span>
-      </a>
-      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="메뉴 토글">+</button>
-    </div>
+  <!-- #region header , nav //brandmark + brand -->
+  <!--!!!! TODO :: teamMates must Copy & Paste this header !!!!-->
+
+  <header class="site-header">
+    <a class="brand" href="main.html" aria-label="MoodGarden main">
+      <span class="brand-mark">MG</span>
+      <span>MoodGarden</span>
+    </a>
+
+    <button class="mobile-menu-btn" aria-label="메뉴 열기"> ☰</button>
     
-    <nav class="nav" id="headerNav">
-      <a href="main.html">오늘의 정원</a>
+    <nav class="nav">
+      <a class="active" href="main.html">오늘의 정원</a>
       <a href="form.html">감정 심기</a>
       <a href="game.html">감정 돌보기</a>
+      <a href="dictonary.html">감정 도감</a>
+      <a href="shout.html">감정 비우기</a>
       <a href="team.html">가드너 소개</a>
-      <a class="active" href="shout.html">감정 비우기</a>
     </nav>
   </header>
+  <!-- #endregion header -->
+
 
   <main>
     <div class="shout-layout">
@@ -76,8 +81,15 @@
     </div>
   </main>
 
-  <footer class="site-footer"></footer>
+    <!-- #region footer -->
+     <!-- TODO TEAM :: Copy & Paste site-footer  -->
+  <footer class="site-footer">
+    <p>KMU - Web Client Computing - Team9  MoodGarden · HTML CSS JavaScript</p>
+  </footer>
+    <!-- #endregion footer -->
 
+  <!-- TODO TEAM :: Add this   <script src="js/common.js"></script>-->
+  <script src="js/common.js"></script>
   <script src="js/shout.js"></script>
 </body>
 </html>
