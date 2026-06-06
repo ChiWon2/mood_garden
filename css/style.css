@@ -2426,8 +2426,8 @@ fieldset {
      }
    
      .shout-control-panel {
-       display: flex !important;
-       flex-direction: column !important;
+       display: contents !important;
+       /* flex-direction: column !important; */
      }
    
      /* 순서(order) 강제 매칭을 통해 가로가 좁아져도 절대 정렬이 깨지지 않게 방어 */
@@ -2443,10 +2443,12 @@ fieldset {
      .shout-paper { height: 420px; width: 100%; }
    
      .shout-btn-group { 
-       order: 5; 
-       margin-top: 8px;
-       width: 100%;
-     }
+      order: 5 !important; 
+      margin-top: 8px !important;
+      width: 100% !important;
+      display: flex !important; /* 버튼 두 개가 나란히 나오도록 강제 */
+      gap: 12px !important;
+    }
    }
    
    @media (max-width: 560px) {
