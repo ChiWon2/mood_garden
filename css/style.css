@@ -93,15 +93,15 @@ main {
   color: var(--primary-dark);
 }
 
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  color: #ffffff;
-  background: var(--primary-dark);
-  box-shadow: 0 10px 20px rgba(63, 125, 84, 0.2);
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 14px;
+  border: 2px solid rgba(63, 125, 84, 0.35);
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 28px rgba(63, 125, 84, 0.18);
 }
 
 /* nav */
@@ -1753,8 +1753,9 @@ fieldset {
   }
 
   .field-sun {
-    top: 22px;
+    top: auto;
     right: 22px;
+    bottom: 146px;
     width: 58px;
     height: 58px;
   }
@@ -1764,10 +1765,10 @@ fieldset {
     min-height: 44px;
   }
 
-  .sky-cloud.cloud-1 { top: 30px; right: 30px; }
-  .sky-cloud.cloud-2 { top: 84px; right: 76px; }
-  .sky-cloud.cloud-3 { top: 54px; right: 138px; }
-  .sky-cloud.cloud-4 { top: 130px; right: 24px; }
+  .sky-cloud.cloud-1 { top: auto; right: 24px; bottom: 208px; }
+  .sky-cloud.cloud-2 { top: auto; right: 92px; bottom: 164px; }
+  .sky-cloud.cloud-3 { top: auto; right: 28px; bottom: 120px; }
+  .sky-cloud.cloud-4 { top: auto; right: 118px; bottom: 82px; }
 
   .threat-1 { --tx: 140px; --ty: 220px; }
   .threat-2 { --tx: -150px; --ty: 210px; }
@@ -1798,6 +1799,11 @@ fieldset {
   .sigh-meter {
     bottom: 18px;
     width: 78%;
+  }
+
+  .game-field.sigh-mode .game-plant {
+    margin-bottom: 118px;
+    transform: translateX(-50%) scale(0.82);
   }
 }
 
@@ -1893,13 +1899,44 @@ fieldset {
   }
 
   .sigh-meter {
-    width: 78%;
+    bottom: 14px;
+    width: 84%;
   }
 
   .sigh-button {
+    bottom: 42px;
     min-height: 42px;
     padding: 0 14px;
     font-size: 0.9rem;
+  }
+
+  .sigh-cloud {
+    bottom: 94px;
+    width: 128px;
+  }
+
+  .field-sun {
+    right: 16px;
+    bottom: 142px;
+    width: 52px;
+    height: 52px;
+    font-size: 0.72rem;
+  }
+
+  .sky-cloud {
+    min-width: 62px;
+    min-height: 40px;
+    font-size: 0.84rem;
+  }
+
+  .sky-cloud.cloud-1 { right: 18px; bottom: 202px; }
+  .sky-cloud.cloud-2 { left: auto; right: 78px; bottom: 160px; }
+  .sky-cloud.cloud-3 { right: 18px; bottom: 118px; }
+  .sky-cloud.cloud-4 { right: 92px; bottom: 82px; }
+
+  .game-field.sigh-mode .game-plant {
+    margin-bottom: 112px;
+    transform: translateX(-50%) scale(0.78);
   }
 }
 
@@ -2235,15 +2272,18 @@ fieldset {
    .shout-title-area h1 {
      margin: 0 0 8px;
      color: var(--primary-dark);
-     font-size: 2.8rem;
+     font-size: 6.6rem;
+     line-height: 0.96;
      font-weight: 800;
+     letter-spacing: 0;
    }
    
    .shout-title-area p {
      margin: 0;
      color: var(--muted);
-     font-size: 1rem;
-     line-height: 1.6;
+     font-size: 1.08rem;
+     line-height: 1.75;
+     max-width: 650px;
    }
    
    .shout-meta-line {
