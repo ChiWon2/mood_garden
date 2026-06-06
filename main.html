@@ -6,34 +6,46 @@
   <title>MoodGarden | 오늘의 정원</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+  <!-- #region header , nav //brandmark + brand -->
+  <!--!!!! TODO :: teamMates must Copy & Paste this header !!!!-->
+
   <header class="site-header">
     <a class="brand" href="main.html" aria-label="MoodGarden main">
       <span class="brand-mark">MG</span>
       <span>MoodGarden</span>
     </a>
+
+    <button class="mobile-menu-btn" aria-label="메뉴 열기"> ☰</button>
+    
     <nav class="nav">
       <a class="active" href="main.html">오늘의 정원</a>
       <a href="form.html">감정 심기</a>
       <a href="game.html">감정 돌보기</a>
+      <a href="dictonary.html">감정 도감</a>
+      <a href="shout.html">감정 비우기</a>
       <a href="team.html">가드너 소개</a>
     </nav>
   </header>
+  <!-- #endregion header -->
 
+  <!-- #region heroSection  -->
   <main>
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">감정을 심고, 하루를 키우다</p>
         <h1>MoodGarden</h1>
         <p>
-          오늘의 감정을 식물로 기록하고, 감정별 돌봄 액션으로 성장시키며
-          하루를 조용히 돌아보는 감정 기록 웹 서비스입니다.
+            지금의 감정을 식물로 표현하고 성장 과정을 기록하여,
+            바쁜 일상 속에서 스스로의 마음을 돌아볼 수 있는 감정 정원 서비스입니다.
         </p>
         <div class="hero-actions">
           <a class="button primary" href="form.html">감정 심기</a>
           <a class="button secondary" href="game.html">돌보기 시작</a>
         </div>
       </div>
+      <!-- #region CSS style Paiting-->
       <div class="garden-scene" aria-label="MoodGarden visual garden">
         <div class="sun"></div>
         <div class="plant big plant-sunflower" id="mainPlant">
@@ -48,12 +60,16 @@
         </div>
         <div class="ground"></div>
       </div>
+      <!-- #endregion CSS style Paiting-->
     </section>
+  <!-- #endregion heroSection  -->
 
+  <!-- #region Mood Cards -->
+    <div class="snap-point"></div>
     <section class="section">
       <div class="section-heading">
         <p class="eyebrow">Mood Cards</p>
-        <h2>감정이 식물이 되는 방식</h2>
+        <h2>감정마다 다른 식물이 자라납니다</h2>
       </div>
       <div class="card-grid mood-grid">
         <article class="card mood-card">
@@ -83,7 +99,79 @@
         </article>
       </div>
     </section>
+    <!-- #endregion Mood Cards -->
 
+<!-- #region Why MoodGarden -->
+<div class="snap-point"></div>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Why MoodGarden?</p>
+    <h2>왜 MoodGarden을 사용할까요?</h2>
+  </div>
+
+  <p class="section-copy">
+    대학생들은 학업, 진로, 인간관계 등 다양한 고민 속에서 감정 관리를
+    필요로 하지만, 
+    <br><b>무거운 심리검사나 전문적인 상담은 부담</b>스럽게 느끼는
+    경우가 많습니다.
+
+    <br>MoodGarden은 사용자의 감정을 식물의 형태로 시각화하고,
+    이를 직접 돌보는 놀이 활동을 통해 부담 없이 자신의 마음을
+    돌아볼 수 있도록 돕습니다.
+  </p>
+
+  <p class="section-copy">
+
+  </p>
+
+<div class="card-grid">
+<article class="card reason-card">
+  <span class="reason-number">01</span>
+
+  <h3>감정 시각화</h3>
+
+  <p>
+    추상적인 감정을 식물로 표현하여 현재의 마음 상태를
+    한눈에 확인할 수 있습니다.
+  </p>
+
+  <div class="reason-visual">🌱</div>
+</article>
+
+<article class="card reason-card">
+  <span class="reason-number">02</span>
+
+  <h3>부담 없는 기록</h3>
+
+  <p>
+    복잡한 심리검사 대신 간단한 감정 입력만으로
+    하루의 감정을 기록할 수 있습니다.
+  </p>
+
+  <div class="reason-visual">📖</div>
+</article>
+
+<article class="card reason-card">
+  <span class="reason-number">03</span>
+
+  <h3>놀이를 통한 돌봄</h3>
+
+  <p>
+    식물을 성장시키는 과정을 통해 자연스럽게
+    자신의 감정을 돌보고 관리할 수 있습니다.
+  </p>
+
+  <div class="reason-visual">🌼</div>
+</article>
+</div>
+  </div>
+</section>
+
+<!-- #endregion Why MoodGarden -->
+
+  <!-- #region Growth Flow -->
+    <div class="snap-point"></div>
     <section class="section split-section">
       <div>
         <p class="eyebrow">Growth Flow</p>
@@ -94,17 +182,56 @@
         </p>
       </div>
       <ol class="flow-list">
-        <li><span>1</span>오늘의 감정 입력</li>
-        <li><span>2</span>감정에 맞는 식물 생성</li>
-        <li><span>3</span>감정별 돌봄 액션 수행</li>
-        <li><span>4</span>나만의 정원 완성</li>
+        <li><span>1</span>감정 심기 : 오늘의 감정 입력</li>
+        <li><span>2</span>감정 돌보기 : 감정별 돌봄 놀이 수행</li>
+        <li><span>3</span>감정 도감 : 수집감정 탐색 및 도감 채우기</li>
+        <li><span>4</span>감정 비우기 : 불필요한 감정 비우기</li>
+        <li><span>5</span>나만의 정원 완성</li>
       </ol>
     </section>
+        <!-- #endregion Growth Flow -->
   </main>
 
+  <!-- #region Garden Mascot -->
+
+<div class="snap-point"></div>
+
+  <div class="mascot">
+
+    <div class="sprout">
+      <div class="leaf leaf-left"></div>
+      <div class="leaf leaf-right"></div>
+      <div class="stem"></div>
+    </div>
+
+    <div class="face">
+
+      <div class="eye left-eye">
+        <div class="pupil"></div>
+      </div>
+
+      <div class="eye right-eye">
+        <div class="pupil"></div>
+      </div>
+
+      <div class="blush blush-left"></div>
+      <div class="blush blush-right"></div>
+
+      <div class="mouth"></div>
+
+    </div>
+  </div>
+<!-- #endregion Garden Mascot -->
+
+    <!-- #region footer -->
+     <!-- TODO TEAM :: Copy & Paste site-footer  -->
   <footer class="site-footer">
-    <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+    <p>KMU - Web Client Computing - Team9  MoodGarden · HTML CSS JavaScript</p>
   </footer>
+    <!-- #endregion footer -->
+
+  <!-- TODO TEAM :: Add this   <script src="js/common.js"></script>-->
+  <script src="js/common.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

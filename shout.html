@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodGarden - 익명 소각장</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-top-bar">
+      <a class="brand" href="main.html" aria-label="MoodGarden main">
+        <span class="brand-mark">MG</span>
+        <span>MoodGarden</span>
+      </a>
+      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="메뉴 토글">+</button>
+    </div>
+    
+    <nav class="nav" id="headerNav">
+      <a href="main.html">오늘의 정원</a>
+      <a href="form.html">감정 심기</a>
+      <a href="game.html">감정 돌보기</a>
+      <a href="team.html">가드너 소개</a>
+      <a class="active" href="shout.html">감정 비우기</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="shout-layout">
+      
+      <section class="shout-control-panel">
+        <div class="shout-title-area">
+          <span class="eyebrow">익명 소각장</span>
+          <h1>종이 태우기 메뉴</h1>
+          <p>마음에 쌓인 응어리를 일기처럼 적고 의식처럼 시원하게 태워버리세요.</p>
+        </div>
+
+        <div class="shout-meta-line">
+          <span>저장되지 않음</span>
+          <span id="charCount">0/500</span>
+        </div>
+
+        <div class="shout-option-box">
+          <label for="speedSelect">속도 선택 영역</label>
+          <select id="speedSelect" class="shout-select">
+            <option value="1.5s" selected>빠르게 (1.5초)</option>
+            <option value="6s">천천히 (6초)</option>
+          </select>
+        </div>
+
+        <div class="shout-btn-group">
+          <button type="button" id="resetBtn" class="button secondary full">초기화 버튼</button>
+          <button type="button" id="burnBtn" class="button primary full">태우기 버튼</button>
+        </div>
+      </section>
+
+      <section class="shout-paper-container" id="interactionContainer">
+        <div class="shout-paper" id="angerPaper">
+          <textarea 
+            id="angerInput" 
+            class="shout-textarea" 
+            placeholder="이곳에 비워내고 싶은 감정이나 후회, 분노를 적어보세요..."
+            maxlength="500"
+          ></textarea>
+        </div>
+
+        <div class="shout-result-message" id="resultMessage">
+          <div class="shout-ash-icon">🌫️</div>
+          <h2>당신은 한 페이지를 비웠어요</h2>
+          <p style="margin-bottom: 24px;">서버에 어떤 기록도 남지 않고 완벽하게 소각되었습니다.</p>
+          <button type="button" id="retryBtn" class="button primary" style="min-width: 180px;">새롭게 텍스트 입력하기</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer"></footer>
+
+  <script src="js/shout.js"></script>
+</body>
+</html>

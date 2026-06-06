@@ -107,3 +107,18 @@ form.addEventListener("submit", function (event) {
     <div class="result-plant ${selected.className}" id="resultPlant"></div>
   `;
 });
+
+// URL 파라미터를 읽어 감정 선택란 자동 지정
+function selectMoodFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const moodParam = urlParams.get("mood");
+  
+  if (moodParam && moodData[moodParam]) {
+    const moodSelect = document.querySelector("#moodSelect");
+    if (moodSelect) {
+      moodSelect.value = moodParam;
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", selectMoodFromURL);

@@ -1,4 +1,6 @@
+(function () {
 const gameTitle = document.querySelector("#gameTitle");
+
 const stageText = document.querySelector("#stageText");
 const scoreText = document.querySelector("#scoreText");
 const roundText = document.querySelector("#roundText");
@@ -647,3 +649,4 @@ startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", resetGame);
 
 resetGame();
+})();
