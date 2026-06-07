@@ -21,6 +21,7 @@
 }
 
 body {
+  min-width: 320px;
   margin: 0;
   font-family: Arial, "Noto Sans KR", sans-serif;
   color: var(--ink);
@@ -46,9 +47,7 @@ main {
   margin: 0 auto;
 }
 
-/* ==========================================================================
-   2. 헤더 네비게이션 및 브랜드 로고 영역
-   ========================================================================== */
+/* #region header */
 .site-header {
   position: sticky;
   top: 0;
@@ -747,6 +746,58 @@ fieldset {
 .result-plant.hydrangea::after { background: #92b9e8; }
 .result-plant.cactus::after { background: #78a84d; border-radius: 42% 42% 48% 48%; }
 
+.result-plant-preview {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: 220px;
+  margin-top: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(221, 232, 217, 0.9);
+  border-radius: var(--radius);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(242, 209, 107, 0.2), transparent 7rem),
+    linear-gradient(180deg, #fbfdf8 0%, #edf7e9 100%);
+}
+
+.result-plant-preview::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  width: 150px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(63, 125, 84, 0.14);
+  transform: translateX(-50%);
+}
+
+.result-plant-preview.waiting::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 38px;
+  width: 34px;
+  height: 24px;
+  border-radius: 55% 45% 58% 42%;
+  background: #b9945f;
+  box-shadow: inset -5px -4px 0 rgba(122, 85, 37, 0.18);
+  transform: translateX(-50%) rotate(-10deg);
+}
+
+.result-plant-preview .game-plant {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  z-index: 1;
+  transform: scale(0.82);
+  transform-origin: bottom center;
+}
+
+.result-plant-preview .game-plant.plant-lavender {
+  transform: scale(0.76);
+}
+
 /* ==========================================================================
    9. 감정 돌보기 게임 콘솔 패널 및 게임 스테이터스
    ========================================================================== */
@@ -1441,22 +1492,91 @@ fieldset {
 }
 
 .team-grid {
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
   padding-bottom: 34px;
 }
 
 .member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-width: 0;
+  min-height: 360px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid rgba(221, 232, 217, 0.95);
+  background:
+    linear-gradient(180deg, rgba(250, 253, 247, 0.98), rgba(255, 255, 255, 0.96));
+}
+
+.member-card .avatar {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 4px solid #f3f8ef;
+  box-shadow: 0 12px 26px rgba(62, 99, 69, 0.16);
+  background: #eaf5e8;
+}
+
+.member-card .avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.member-card h2 {
+  min-height: auto;
+  margin: 0 0 5px;
+  color: var(--primary-dark);
+  font-size: 1.26rem;
+  line-height: 1.2;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.member-meta {
+  min-height: 34px;
+  margin: 0 0 14px !important;
+  color: #6f8f72 !important;
+  font-size: 0.82rem !important;
+  font-weight: 700;
+  line-height: 1.35 !important;
+  text-align: center;
+  word-break: keep-all;
 }
 
 .role {
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  max-width: 100%;
   margin: 0;
-  padding: 6px 10px;
-  border-radius: 999px;
+  padding: 7px 11px;
+  border-radius: 12px;
   color: var(--primary-dark) !important;
-  background: #eaf5e8;
+  border: 1px solid #d8ead3;
+  background: #f0f8ed;
+  font-size: 0.86rem;
   font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  white-space: normal;
+  word-break: keep-all;
+}
+
+.member-card p:not(.role):not(.member-meta) {
+  width: 100%;
+  margin: 18px 0 0;
+  color: #5f7164;
+  font-size: 0.94rem;
+  line-height: 1.74;
+  text-align: left;
+  word-break: keep-all;
 }
 
 /* ==========================================================================
@@ -1487,41 +1607,52 @@ fieldset {
 }
 
 @media (max-width: 1024px) {
-  body .site-header {
-    position: sticky;
-    top: 14px;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    overflow: visible;
-    padding: 14px 20px;
+  
+    main,
+  .site-header,
+  .site-footer {
+    width: min(100% - 24px, 1180px);
   }
 
-  .site-header .menu-toggle {
+  .site-header {
+    position: sticky;
+    top: 0;
+
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .mobile-menu-btn 
+  {
+    display: block;
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .nav {
+    width: 100%;
+
+    display: none;
+    flex-direction: column;
+
+    margin-top: 12px;
+    padding-top: 12px;
+
+    border-top: 1px solid rgba(0,0,0,.08);
+  }
+
+  .nav.open {
     display: flex;
   }
 
-  .site-header .nav {
-    display: grid;
-    visibility: hidden;
-    position: absolute;
-    top: calc(100% + 10px);
-    left: 0;
-    right: 0;
+  .nav a {
     width: 100%;
-    max-width: none;
-    margin-left: 0;
-    padding: 16px;
-    background: #ffffff;
-    border: 1px solid #d9e6d5;
-    border-radius: 20px;
-    box-shadow: 0 16px 34px rgba(62, 99, 69, 0.16);
-    grid-template-columns: 1fr;
-    gap: 8px;
-    z-index: 99;
-    opacity: 0;
-    transform: translateY(-15px) scale(0.96);
-    pointer-events: none;
+    text-align: left;
+    padding: 12px;
   }
 
   .site-header .nav.has-transition {
@@ -1546,19 +1677,6 @@ fieldset {
   .site-header .nav a:hover,
   .site-header .nav a.active {
     background: #eaf5e8;
-  }
-
-  /* 모바일 햄버거 메뉴 오픈 시 애니메이션 */
-  .menu-toggle.open span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-
-  .menu-toggle.open span:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-toggle.open span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
   }
 }
 
@@ -1690,45 +1808,6 @@ fieldset {
     width: min(100% - 24px, 1180px);
   }
 
-  .site-header {
-    position: sticky;
-    top: 0;
-
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-
-  .brand-mark {
-    width: 38px;
-    height: 38px;
-  }
-
-  .nav {
-    width: 100%;
-
-    display: none;
-    flex-direction: column;
-
-    margin-top: 12px;
-    padding-top: 12px;
-
-    border-top: 1px solid rgba(0,0,0,.08);
-  }
-
-  .nav.open {
-    display: flex;
-  }
-
-  .nav a {
-    width: 100%;
-    text-align: left;
-    padding: 12px;
-  }
   .hero-copy h1,
   .page-title h1 {
     font-size: 3rem;
@@ -2144,30 +2223,6 @@ fieldset {
      display: none;
    }
    
-   /* 헤더 메뉴 확장성 보완 (Flexbox 기반 가로 정렬) */
-   .nav {
-     display: flex !important;
-     flex-direction: row !important;
-     justify-content: space-between !important;
-     align-items: center !important;
-     gap: 8px !important;
-     width: auto !important;
-     max-width: none !important;
-   }
-   
-   .nav a {
-     flex: 1 1 auto !important;
-     padding: 10px 16px !important;
-     font-size: 0.95rem !important;
-     text-align: center !important;
-     white-space: nowrap !important;
-   }
-   
-   .nav a.active {
-     color: var(--primary-dark) !important;
-     background: #eaf5e8 !important;
-   }
-   
    /* 전체 레이아웃 구성 (기본 1:1.3 비율로 유연하게 대응) */
    .shout-layout {
      display: grid;
@@ -2357,66 +2412,12 @@ fieldset {
      from { opacity: 0; transform: translateY(10px); }
      to { opacity: 1; transform: translateY(0); }
    }
-   
-   /* ==========================================================
+  
+
+      /* ==========================================================
       🚨 해결 구간: 애매한 태블릿 해상도 분기 추가 보완 (1024px 이하부터 column 제어)
       ========================================================== */
-   @media (max-width: 1024px) {
-     .site-header {
-       position: relative !important; 
-       display: flex !important;
-       flex-direction: column !important;
-       align-items: stretch !important;
-       gap: 0 !important;
-       padding: 16px 24px !important;
-       border-radius: 24px !important;
-       margin: 14px 14px 0 !important;
-       width: calc(100% - 28px) !important;
-     }
-   
-     .header-top-bar {
-       display: flex !important;
-       justify-content: space-between !important;
-       align-items: center !important;
-       width: 100% !important;
-     }
-   
-     .menu-toggle-btn {
-       display: grid !important;
-       place-items: center;
-       width: 32px;
-       height: 32px;
-       border-radius: 50%;
-       border: none;
-       background: var(--primary-dark);
-       color: #ffffff;
-       font-size: 1.2rem;
-       font-weight: bold;
-       cursor: pointer;
-       transition: background 0.2s ease;
-     }
-   
-     .nav {
-       display: none !important;
-       grid-template-columns: 1fr !important;
-       width: 100% !important;
-       gap: 4px !important;
-       margin-top: 16px !important;
-       padding-top: 12px !important;
-       border-top: 1px solid var(--line) !important;
-     }
-   
-     .site-header.menu-open .nav {
-       display: grid !important;
-     }
-   
-     .nav a {
-       text-align: left !important;
-       padding: 12px 16px !important;
-       border-radius: var(--radius) !important;
-       width: 100% !important;
-     }
-   
+  
      /* 애매한 픽셀에서 가로가 무너지기 전에 세로 정렬(Flex Column) 유도 */
      .shout-layout {
        display: flex !important;
@@ -2452,16 +2453,8 @@ fieldset {
      .shout-paper { height: 420px; width: 100%; }
    
      .shout-btn-group { 
-      order: 5 !important; 
-      margin-top: 8px !important;
-      width: 100% !important;
-      display: flex !important; /* 버튼 두 개가 나란히 나오도록 강제 */
-      gap: 12px !important;
-    }
-   }
-   
-   @media (max-width: 560px) {
-     .nav {
-       grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+       order: 5; 
+       margin-top: 8px;
+       width: 100%;
      }
-   }
+  

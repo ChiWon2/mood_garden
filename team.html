@@ -7,25 +7,27 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <!-- #region header , nav //brandmark + brand -->
+  <!--!!!! TODO :: teamMates must Copy & Paste this header !!!!-->
+
   <header class="site-header">
     <a class="brand" href="main.html" aria-label="MoodGarden main">
       <span class="brand-mark">MG</span>
       <span>MoodGarden</span>
     </a>
-    <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <nav class="nav" id="siteNav">
+
+    <button class="mobile-menu-btn" aria-label="메뉴 열기"> ☰</button>
+    
+    <nav class="nav">
       <a href="main.html">오늘의 정원</a>
       <a href="form.html">감정 심기</a>
       <a href="game.html">감정 돌보기</a>
-      <a href="burn.html">감정 태우기</a>
-      <a href="dictionary.html">식물 도감</a>
-      <a class="active" href="team.html">가드너 소개</a>
+      <a href="dictionary.html">감정 도감</a>
+      <a href="shout.html">감정 비우기</a>
+      <a class ="active" href="team.html">가드너 소개</a>
     </nav>
   </header>
+  <!-- #endregion header -->
 
   <main>
     <section class="page-title">
@@ -36,34 +38,49 @@
 
     <section class="card-grid team-grid">
       <article class="card member-card">
-        <div class="avatar">1</div>
-        <h2>팀원1</h2>
-        <p class="role">기획 · 발표</p>
-        <p>서비스 컨셉을 정리하고 발표 흐름을 구성했습니다.</p>
+        <div class="avatar">
+          <img src="assets/team/20191146_choi.jpg" alt="최치원 프로필 사진">
+        </div>
+        <h2>최치원</h2>
+        <p class="member-meta">20191146 · 소프트웨어학부</p>
+        <p class="role">메인 · 발표</p>
+        <p>오늘의 정원 메인 화면을 구성하고, MoodGarden의 핵심 소개와 감정별 식물 흐름이 잘 보이도록 화면 내용을 배치했습니다. 발표 흐름을 정리하고 최종 발표도 담당했습니다.</p>
       </article>
       <article class="card member-card">
-        <div class="avatar">2</div>
-        <h2>팀원2</h2>
-        <p class="role">메인 페이지</p>
-        <p>감정 입력 결과와 연결되는 오늘의 정원 화면을 구성했습니다.</p>
+        <div class="avatar">
+          <img src="assets/team/20233118_han.png" alt="한시우 프로필 사진">
+        </div>
+        <h2>한시우</h2>
+        <p class="member-meta">20233118 · 소프트웨어학부</p>
+        <p class="role">기획 · 폼 · 게임 · 가드너</p>
+        <p>MoodGarden 웹사이트의 전체 컨셉과 큰 흐름을 기획했습니다. 감정심기 폼을 구성하고, 폼에서 입력한 감정이 돌보기 흐름으로 이어지도록 연결했습니다. 감정별 돌보기 게임, 꽃 그래픽과 성장 애니메이션, 가드너 소개 페이지를 구현했습니다.</p>
       </article>
       <article class="card member-card">
-        <div class="avatar">3</div>
-        <h2>팀원3</h2>
-        <p class="role">게임 페이지</p>
-        <p>감정별 미니 액션 게임과 씨앗, 새싹, 봉우리, 만개 성장 단계를 구현했습니다.</p>
+        <div class="avatar">
+          <img src="assets/team/20203059_do.png" alt="도승준 프로필 사진">
+        </div>
+        <h2>도승준</h2>
+        <p class="member-meta">20203059 · 소프트웨어학부</p>
+        <p class="role">감정 비우기</p>
+        <p>감정을 익명으로 적고 태우는 감정 비우기 화면을 구현했습니다. 텍스트 입력, 글자 수 표시, 소각 속도 선택, 초기화와 다시 입력하기 흐름을 담당했습니다. 사용자가 기록을 남기지 않고 감정을 비워내는 경험을 만들었습니다.</p>
       </article>
       <article class="card member-card">
-        <div class="avatar">4</div>
-        <h2>팀원4</h2>
-        <p class="role">폼 구현</p>
-        <p>감정 입력 폼, 식물 추천 결과, 게임 페이지로 이어지는 저장 기능을 구현했습니다.</p>
+        <div class="avatar">
+          <img src="assets/team/20223121_lee.jpg" alt="유빈 프로필 사진">
+        </div>
+        <h2>이유빈</h2>
+        <p class="member-meta">20223121 · 소프트웨어학부</p>
+        <p class="role">와이어프레임 · 식물 도감 </p>
+        <p>서비스 화면의 와이어프레임을 설계하고, 감정별 식물 도감 페이지를 구현했습니다. 식물 탭, 상세 설명, 성장 단계 미리보기, 감정별 BGM과 추천 영상 영역을 구성했습니다. 사용자가 감정 식물의 의미를 자세히 탐색할 수 있도록 정리했습니다.</p>
       </article>
       <article class="card member-card">
-        <div class="avatar">5</div>
-        <h2>팀원5</h2>
-        <p class="role">통합 · 반응형</p>
-        <p>메인, 폼, 게임의 식물 상태를 통합하고 미디어쿼리 반응형을 맡았습니다.</p>
+        <div class="avatar">
+          <img src="assets/team/20230001_kim.jpg" alt="김예린 프로필 사진">
+        </div>
+        <h2>김예린</h2>
+        <p class="member-meta">20230001 · 경영정보학부</p>
+        <p class="role">스타일 관리 · PPT</p>
+        <p>전체 페이지의 공통 스타일과 시각적 톤을 정리하고, 헤더·카드·버튼·반응형 레이아웃이 일관되게 보이도록 다듬었습니다. 페이지별 분위기가 하나의 서비스처럼 이어지도록 스타일을 관리하고 발표 자료 제작도 함께 담당했습니다.</p>
       </article>
     </section>
 
@@ -71,15 +88,33 @@
       <p class="eyebrow">Review</p>
       <h2>제작 후기</h2>
       <p>
-        MoodGarden은 감정 기록, 식물 생성, 감정별 미니 액션 게임, 단계별 성장 애니메이션을 하나의 컨셉으로 연결하며
-        HTML, CSS, JavaScript의 기본 기능을 종합적으로 연습한 프로젝트입니다.
+        MoodGarden은 사용자가 오늘의 감정과 강도를 입력하면 그 감정에 어울리는 식물을 추천하고,
+        이후 감정별 돌보기 게임과 식물 도감, 감정 비우기 기능으로 자연스럽게 이어지는 웹 서비스입니다.
+        단순히 페이지를 나누어 만드는 것에서 끝나지 않고, 폼에서 저장한 감정 정보가 게임 화면으로 전달되고
+        각 식물의 의미와 성장 단계가 도감에서 다시 설명되도록 흐름을 연결하는 데 집중했습니다.
+      </p>
+      <p>
+        구현 과정에서는 HTML로 페이지 구조를 잡고, CSS로 공통 카드·버튼·헤더·반응형 레이아웃을 맞추었으며,
+        JavaScript로 감정 선택, localStorage 저장, 미니게임 상호작용, 결과 화면 변경 같은 동작을 구현했습니다.
+        특히 감정을 식물이라는 시각적 요소로 바꾸고, 클릭·선택·게이지 조작 같은 짧은 행동을 통해 사용자가
+        자신의 감정을 부담 없이 돌아볼 수 있게 만드는 점이 이 프로젝트의 핵심이었습니다.
+      </p>
+      <p>
+        팀원별로 메인 화면, 감정 심기, 돌보기 게임, 감정 비우기, 식물 도감, 스타일과 발표 자료를 나누어 맡으면서
+        각 페이지의 개성을 살리는 동시에 하나의 서비스처럼 보이도록 통일감을 맞추는 경험을 할 수 있었습니다.
+        이번 프로젝트를 통해 웹 페이지를 꾸미는 것뿐 아니라, 사용자 흐름을 설계하고 여러 기능을 하나의 컨셉으로
+        묶는 과정의 중요성을 배웠습니다.
       </p>
     </section>
   </main>
 
+    <!-- #region footer -->
+     <!-- TODO TEAM :: Copy & Paste site-footer  -->
   <footer class="site-footer">
-    <p>MoodGarden Team Project · HTML CSS JavaScript</p>
+    <p>KMU - Web Client Computing - Team9  MoodGarden · HTML CSS JavaScript</p>
   </footer>
-  <script src="js/main.js"></script>
+    <!-- #endregion footer -->
+  <!-- TODO TEAM :: Add this   <script src="js/common.js"></script>-->
+  <script src="js/common.js"></script>
 </body>
 </html>
