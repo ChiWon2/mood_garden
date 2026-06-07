@@ -268,6 +268,9 @@ function finishGame(message, guide) {
 function completeCare(success, successText, failText) {
   if (!isPlaying || chances <= 0) return;
 
+  actionLayer.querySelectorAll("button").forEach(function (button) {
+    button.disabled = true;
+  });
   clearActionTimers();
   const profile = activeProfile || getCareProfile();
   const delta = success ? profile.gain : -profile.loss;
