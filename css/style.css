@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 /* ==========================================================================
    1. 공통/글로벌 스타일 시스템 및 변수 설정
    ========================================================================== */
@@ -2212,6 +2212,13 @@ fieldset {
 /* ==========================================================
    ③ 감정 비우기 · 익명 소각장 (shout.html) 최종 보완 스타일
    ========================================================== */
+
+   /* 데스크탑 기본 헤더 래퍼 스타일 보완 */
+   .header-top-bar {
+     display: flex;
+     align-items: center;
+   }
+   
    .menu-toggle-btn {
      display: none;
    }
@@ -2420,13 +2427,22 @@ fieldset {
      }
    
      .shout-control-panel {
-       display: flex !important;
-       flex-direction: column !important;
+       display: contents !important;
+       /* flex-direction: column !important; */
      }
    
      /* 순서(order) 강제 매칭을 통해 가로가 좁아져도 절대 정렬이 깨지지 않게 방어 */
      .shout-title-area { order: 1; }
-     .shout-meta-line { order: 2; }
+     .shout-meta-line { 
+      order: 2;
+      display: flex !important;
+      flex-direction: row !important;      
+      justify-content: space-between !important; 
+      gap: 16px !important;                 
+      
+      padding-top: 4px !important;
+      padding-bottom: 12px !important;
+    }
      .shout-option-box { order: 3; }
      
      .shout-paper-container { 
