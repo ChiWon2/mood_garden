@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
 const gameTitle = document.querySelector("#gameTitle");
 
 const stageText = document.querySelector("#stageText");
@@ -16,6 +16,8 @@ const careHint = document.querySelector("#careHint");
 const miniAction = document.querySelector("#miniAction");
 const actionLayer = document.querySelector("#actionLayer");
 const gameField = document.querySelector("#gameField");
+const plantRequiredModal = document.querySelector("#plantRequiredModal");
+const closePlantModal = document.querySelector("#closePlantModal");
 
 const plantClasses = [
   "plant-sunflower",
@@ -67,20 +69,55 @@ const actionData = {
 let growth = 0;
 let chances = 5;
 let isPlaying = false;
+let needsPlant = false;
+let gameFinished = false;
 let activeProfile = null;
 let activeTimers = [];
 let currentPlant = { ...defaultPlant };
 
+function getPlantKeyFromClass(gameClass) {
+  const map = {
+    "plant-sunflower": "happy",
+    "plant-lavender": "calm",
+    "plant-moss": "tired",
+    "plant-hydrangea": "sad",
+    "plant-cactus": "angry"
+  };
+  return map[gameClass] || "happy";
+}
+
+function openPlantRequiredModal() {
+  if (!plantRequiredModal) return;
+
+  plantRequiredModal.classList.add("open");
+  plantRequiredModal.setAttribute("aria-hidden", "false");
+}
+
+function closePlantRequiredModal() {
+  if (!plantRequiredModal) return;
+
+  plantRequiredModal.classList.remove("open");
+  plantRequiredModal.setAttribute("aria-hidden", "true");
+}
+
 function readSavedPlant() {
   const saved = localStorage.getItem("moodGardenPlant");
 
-  if (!saved) {
-    currentPlant = { ...defaultPlant };
-    return;
+  const plantedThisSession = sessionStorage.getItem("moodGardenPlantedThisSession") === "true";
+  const reloaded = sessionStorage.getItem("moodGardenReloaded") === "true";
+
+  if (!saved || !plantedThisSession || reloaded) {
+    return false;
   }
 
   try {
     const parsed = JSON.parse(saved);
+
+    if (parsed.source !== "form") {
+      localStorage.removeItem("moodGardenPlant");
+      return false;
+    }
+
     currentPlant = { ...defaultPlant, ...parsed };
 
     if (!plantClasses.includes(currentPlant.gameClass)) {
@@ -89,9 +126,10 @@ function readSavedPlant() {
     if (!actionData[currentPlant.mood]) {
       currentPlant.mood = defaultPlant.mood;
     }
+    return true;
   } catch (error) {
     localStorage.removeItem("moodGardenPlant");
-    currentPlant = { ...defaultPlant };
+    return false;
   }
 }
 
@@ -114,8 +152,38 @@ function applyPlantToScreen() {
 }
 
 function loadPlantFromForm() {
-  readSavedPlant();
+  const hasPlant = readSavedPlant();
+  needsPlant = !hasPlant;
+
+  if (!hasPlant) {
+    currentPlant = { ...defaultPlant };
+    showPlantRequiredScreen();
+    return false;
+  }
+
   applyPlantToScreen();
+  return true;
+}
+
+function showPlantRequiredScreen() {
+  isPlaying = false;
+  gameFinished = false;
+  activeProfile = null;
+  growth = 0;
+  chances = 0;
+  clearActionLayer();
+  applyPlantToScreen();
+  gameTitle.textContent = "감정 심기 후 돌볼 수 있어요";
+  carePrompt.textContent = "아직 심은 감정 식물이 없습니다.";
+  careHint.textContent = "먼저 오늘의 감정을 심으면 그 식물로 바로 돌보기 게임을 시작할 수 있어요.";
+  setProgress("감정 심기 화면에서 이름, 감정, 강도, 오늘의 한 줄을 입력해 주세요.");
+  gameMessage.textContent = "감정을 먼저 심어 주세요.";
+  gameGuide.textContent = "감정 돌보기는 감정 심기에서 저장된 식물을 불러와 진행됩니다.";
+  startBtn.disabled = false;
+  startBtn.textContent = "감정 심기";
+  resetBtn.textContent = "감정 심기";
+  updateDisplay();
+  openPlantRequiredModal();
 }
 
 function getCareProfile() {
@@ -257,9 +325,13 @@ function markFeedback(success) {
 
 function finishGame(message, guide) {
   isPlaying = false;
+  gameFinished = true;
+  localStorage.setItem("moodGardenLastPlant", getPlantKeyFromClass(currentPlant.gameClass));
+  sessionStorage.setItem("moodGardenShowLastPlantInDictionary", "true");
   clearActionTimers();
   startBtn.disabled = false;
-  startBtn.textContent = "한 번 더 돌보기";
+  startBtn.textContent = "감정도감으로 가기";
+  resetBtn.textContent = "새 감정 심기";
   gameMessage.textContent = message;
   gameGuide.textContent = guide;
   updateDisplay();
@@ -616,11 +688,21 @@ function renderMiniAction() {
 }
 
 function startGame() {
-  loadPlantFromForm();
+  if (gameFinished) {
+    window.location.href = `dictionary.html?plant=${getPlantKeyFromClass(currentPlant.gameClass)}`;
+    return;
+  }
+
+  if (needsPlant || !loadPlantFromForm()) {
+    openPlantRequiredModal();
+    return;
+  }
+
   activeProfile = getCareProfile();
   growth = activeProfile.start;
   chances = activeProfile.rounds;
   isPlaying = true;
+  gameFinished = false;
   startBtn.disabled = true;
   startBtn.textContent = "돌보는 중";
   resetBtn.textContent = "처음으로";
@@ -631,11 +713,21 @@ function startGame() {
 }
 
 function resetGame() {
-  loadPlantFromForm();
+  if (gameFinished) {
+    window.location.href = "form.html";
+    return;
+  }
+
+  if (needsPlant || !loadPlantFromForm()) {
+    openPlantRequiredModal();
+    return;
+  }
+
   activeProfile = getCareProfile();
   growth = activeProfile.start;
   chances = activeProfile.rounds;
   isPlaying = false;
+  gameFinished = false;
   startBtn.disabled = false;
   startBtn.textContent = "게임 시작";
   resetBtn.textContent = "다시 하기";
@@ -650,6 +742,17 @@ function resetGame() {
 
 startBtn.addEventListener("click", startGame);
 resetBtn.addEventListener("click", resetGame);
+if (closePlantModal) {
+  closePlantModal.addEventListener("click", closePlantRequiredModal);
+}
+if (plantRequiredModal) {
+  plantRequiredModal.addEventListener("click", function (event) {
+    if (event.target === plantRequiredModal) {
+      closePlantRequiredModal();
+    }
+  });
+}
 
 resetGame();
 })();
+

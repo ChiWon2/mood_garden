@@ -1,14 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoodGarden | 감정 돌보기</title>
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body>
-  <!-- #region header , nav //brandmark + brand -->
-  <!--!!!! TODO :: teamMates must Copy & Paste this header !!!!-->
 
   <header class="site-header">
     <a class="brand" href="main.html" aria-label="MoodGarden main">
@@ -17,7 +16,7 @@
     </a>
 
     <button class="mobile-menu-btn" aria-label="메뉴 열기"> ☰</button>
-    
+
     <nav class="nav">
       <a href="main.html">오늘의 정원</a>
       <a href="form.html">감정 심기</a>
@@ -27,8 +26,6 @@
       <a href="team.html">가드너 소개</a>
     </nav>
   </header>
-  <!-- #endregion header -->
-
 
   <main>
     <section class="page-title">
@@ -87,7 +84,7 @@
         </div>
 
         <div class="mini-action" id="miniAction" aria-live="polite">
-          <p>먼저 감정을 심었다면 그 식물이 자동으로 불러와집니다. 바로 시작해도 기본 해바라기로 체험할 수 있어요.</p>
+          <p>먼저 감정을 심었다면 그 식물이 자동으로 불러와집니다. 감정을 심은 뒤 게임을 시작할 수 있어요.</p>
         </div>
 
         <div class="game-actions">
@@ -111,15 +108,24 @@
     </section>
   </main>
 
-    <!-- #region footer -->
-     <!-- TODO TEAM :: Copy & Paste site-footer  -->
   <footer class="site-footer">
     <p>KMU - Web Client Computing - Team9  MoodGarden · HTML CSS JavaScript</p>
   </footer>
-    <!-- #endregion footer -->
 
-  <!-- TODO TEAM :: Add this   <script src="js/common.js"></script>-->
+  <div class="modal-backdrop" id="plantRequiredModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="plantRequiredTitle">
+      <p class="eyebrow">Before Care</p>
+      <h2 id="plantRequiredTitle">감정을 심어주세요</h2>
+      <p>감정 돌보기는 오늘 심은 감정 식물을 불러와 진행됩니다. 먼저 감정을 심은 뒤 다시 돌봐 주세요.</p>
+      <div class="modal-actions">
+        <a class="button primary" href="form.html">감정 심기</a>
+        <button class="button secondary" id="closePlantModal" type="button">닫기</button>
+      </div>
+    </div>
+  </div>
+
   <script src="js/common.js"></script>
   <script src="js/game.js"></script>
 </body>
 </html>
+

@@ -1,4 +1,4 @@
-const moodData = {
+﻿const moodData = {
   happy: {
     mood: "행복",
     plant: "Sunflower",
@@ -94,6 +94,7 @@ form.addEventListener("submit", function (event) {
   const safeNote = escapeHTML(note);
 
   localStorage.setItem("moodGardenPlant", JSON.stringify({
+    source: "form",
     owner: name,
     mood: selected.mood,
     plant: selected.plant,
@@ -101,6 +102,8 @@ form.addEventListener("submit", function (event) {
     gameClass: selected.gameClass,
     level: level.value
   }));
+  sessionStorage.removeItem("moodGardenReloaded");
+  sessionStorage.setItem("moodGardenPlantedThisSession", "true");
 
   resultCard.innerHTML = `
     <p class="eyebrow">Today Plant</p>
@@ -119,12 +122,10 @@ form.addEventListener("submit", function (event) {
     </div>
   `;
 });
-
-// URL 파라미터를 읽어 감정 선택란 자동 지정
 function selectMoodFromURL() {
   const urlParams = new URLSearchParams(window.location.search);
   const moodParam = urlParams.get("mood");
-  
+
   if (moodParam && moodData[moodParam]) {
     const moodSelect = document.querySelector("#moodSelect");
     if (moodSelect) {
@@ -134,3 +135,4 @@ function selectMoodFromURL() {
 }
 
 document.addEventListener("DOMContentLoaded", selectMoodFromURL);
+
