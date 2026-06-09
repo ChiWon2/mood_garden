@@ -136,8 +136,24 @@ function initDictionary() {
         gameBtn.addEventListener("click", function (event) {
           event.preventDefault();
           const plantData = dictionaryData[activePlantKey];
+
+          // 로컬스토리지에서 owner 값을 불러옴
+          let ownerName = "도감 가드너";
+          const savedPlant = localStorage.getItem("moodGardenPlant");
+          if (savedPlant) {
+            try {
+              const parsed = JSON.parse(savedPlant);
+              if (parsed && parsed.owner) {
+                ownerName = parsed.owner;
+              }
+            } catch (e) {
+              console.error(e);
+            }
+          }
+
+          // 로컬스토리지 값이 없다면 owner: 도감가드너, 난이도는 '보통'으로 기본 세팅
           const plantObj = {
-            owner: "도감 가드너",
+            owner: ownerName,
             mood: plantData.mood,
             plant: plantData.engName,
             korean: plantData.plantName,
