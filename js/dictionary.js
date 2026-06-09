@@ -1,4 +1,4 @@
-let dictionaryData = {};
+﻿let dictionaryData = {};
 let activePlantKey = "happy";
 let activeStage = "stage-bloom";
 
@@ -22,8 +22,6 @@ function updateDetailView(plantKey) {
   const data = dictionaryData[plantKey];
 
   if (!data) return;
-
-  // 1. 왼쪽 개요 카드의 정보 업데이트
   document.getElementById("overviewPlantName").textContent = data.plantName;
   document.getElementById("overviewEngName").textContent = data.engName;
   const moodBadge = document.getElementById("overviewMoodBadge");
@@ -33,15 +31,11 @@ function updateDetailView(plantKey) {
   }
   document.getElementById("overviewDescBadge").textContent = data.keywords;
   document.getElementById("formBtn").href = `form.html?mood=${plantKey}`;
-
-  // 2. 대형 식물 그래픽 디스플레이 업데이트
   const visualEl = document.getElementById("detailPlantVisual");
   if (visualEl) {
     visualEl.className = `game-plant ${data.className} ${activeStage}`;
     visualEl.innerHTML = getPlantHTML(plantKey);
   }
-
-  // 3. 오른쪽 상세 설명 텍스트 및 추천 영상 업데이트
   document.getElementById("detailMeaning").textContent = Array.isArray(data.meaning) ? data.meaning.join("\n\n") : data.meaning;
   document.getElementById("detailMessage").textContent = Array.isArray(data.message) ? data.message.join("\n\n") : data.message;
   document.getElementById("detailCare").textContent = Array.isArray(data.care) ? data.care.join("\n\n") : data.care;
@@ -51,8 +45,6 @@ function updateDetailView(plantKey) {
   if (detailVideo && data.youtubeId) {
     detailVideo.src = `https://www.youtube.com/embed/${data.youtubeId}?cc_load_policy=1&hl=ko`;
   }
-
-  // 4. 성장 단계별 미리보기 썸네일 업데이트
   const previewItems = document.querySelectorAll(".stage-preview-item");
   previewItems.forEach(function (item) {
     const stage = item.getAttribute("data-stage");
@@ -62,13 +54,11 @@ function updateDetailView(plantKey) {
       plantContainer.innerHTML = getPlantHTML(plantKey);
     }
   });
-
-  // 5. BGM 플레이어 소스 업데이트
   const bgmPlayer = document.getElementById("bgmPlayer");
   if (bgmPlayer) {
     const bgmSrc = moodBgmMap[plantKey] || moodBgmMap["happy"];
     const isPlaying = !bgmPlayer.paused;
-    
+
     bgmPlayer.loop = true;
     bgmPlayer.src = bgmSrc;
     if (isPlaying) {
@@ -77,8 +67,62 @@ function updateDetailView(plantKey) {
   }
 }
 
+function getPlantKeyFromGameClass(gameClass) {
+  const map = {
+    "plant-sunflower": "happy",
+    "plant-lavender": "calm",
+    "plant-moss": "tired",
+    "plant-hydrangea": "sad",
+    "plant-cactus": "angry"
+  };
+  return map[gameClass] || "";
+}
+
+function getInitialPlantKey() {
+  if (sessionStorage.getItem("moodGardenReloaded") === "true") {
+    sessionStorage.removeItem("moodGardenShowLastPlantInDictionary");
+    return "happy";
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const plantParam = urlParams.get("plant");
+
+  if (plantParam && dictionaryData[plantParam]) {
+    sessionStorage.removeItem("moodGardenShowLastPlantInDictionary");
+    return plantParam;
+  }
+
+  if (sessionStorage.getItem("moodGardenPlantedThisSession") === "true") {
+    try {
+      const savedPlant = JSON.parse(localStorage.getItem("moodGardenPlant") || "{}");
+      const savedPlantKey = getPlantKeyFromGameClass(savedPlant.gameClass);
+      if (savedPlantKey && dictionaryData[savedPlantKey]) {
+        return savedPlantKey;
+      }
+    } catch (error) {
+      localStorage.removeItem("moodGardenPlant");
+    }
+  }
+
+  if (sessionStorage.getItem("moodGardenShowLastPlantInDictionary") === "true") {
+    const lastPlant = localStorage.getItem("moodGardenLastPlant");
+    sessionStorage.removeItem("moodGardenShowLastPlantInDictionary");
+    if (lastPlant && dictionaryData[lastPlant]) {
+      return lastPlant;
+    }
+  }
+
+  return "happy";
+}
+
+function activateTab(plantKey) {
+  const tabs = document.querySelectorAll(".dictionary-tab");
+  tabs.forEach(function (tab) {
+    tab.classList.toggle("active", tab.getAttribute("data-plant") === plantKey);
+  });
+}
+
 function initDictionary() {
-  // JSON 파일로부터 식물 도감 데이터 로드
   fetch("js/dictionary.json")
     .then(response => {
       if (!response.ok) {
@@ -90,16 +134,12 @@ function initDictionary() {
       dictionaryData = data;
 
       const tabs = document.querySelectorAll(".dictionary-tab");
-
-      // 탭 클릭 이벤트 리스너
       tabs.forEach(function (tab) {
         tab.addEventListener("click", function () {
           tabs.forEach(t => t.classList.remove("active"));
           this.classList.add("active");
 
           const plantKey = this.getAttribute("data-plant");
-          
-          // 식물 선택 변경 시 활성 단계를 만개(bloom)로 초기화
           activeStage = "stage-bloom";
           const previewItems = document.querySelectorAll(".stage-preview-item");
           previewItems.forEach(function (item) {
@@ -113,8 +153,6 @@ function initDictionary() {
           updateDetailView(plantKey);
         });
       });
-
-      // 성장 단계 미리보기 클릭 이벤트 리스너
       const previewItems = document.querySelectorAll(".stage-preview-item");
       previewItems.forEach(function (item) {
         item.addEventListener("click", function () {
@@ -129,28 +167,17 @@ function initDictionary() {
           }
         });
       });
-
-      // 식물 돌보기 버튼 클릭 시 선택된 식물 정보를 로컬 스토리지에 저장하여 게임에 연동
       const gameBtn = document.getElementById("gameBtn");
       if (gameBtn) {
         gameBtn.addEventListener("click", function (event) {
           event.preventDefault();
-          const plantData = dictionaryData[activePlantKey];
-          const plantObj = {
-            owner: "도감 가드너",
-            mood: plantData.mood,
-            plant: plantData.engName,
-            korean: plantData.plantName,
-            gameClass: plantData.className,
-            level: "보통"
-          };
-          localStorage.setItem("moodGardenPlant", JSON.stringify(plantObj));
-          window.location.href = "game.html";
+          window.location.href = `form.html?mood=${activePlantKey}`;
         });
       }
-
-      // 기본 식물(행복-해바라기) 로드
-      updateDetailView("happy");
+      const initialPlantKey = getInitialPlantKey();
+      activeStage = "stage-bloom";
+      activateTab(initialPlantKey);
+      updateDetailView(initialPlantKey);
     })
     .catch(error => {
       console.error("도감 데이터를 불러오는 중 오류 발생:", error);
@@ -158,3 +185,4 @@ function initDictionary() {
 }
 
 document.addEventListener("DOMContentLoaded", initDictionary);
+
