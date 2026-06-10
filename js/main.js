@@ -1,4 +1,4 @@
-﻿const mainPlant = document.querySelector("#mainPlant");
+const mainPlant = document.querySelector("#mainPlant");
 const gardenPlants = document.querySelectorAll(".garden-scene .plant");
 const gardenScene = document.querySelector(".garden-scene");
 const points = document.querySelectorAll(".snap-point");
@@ -102,10 +102,7 @@ const plantClasses = [
 ];
 
 function loadMainPlant() {
-  const saved = localStorage.getItem("moodGardenPlant");
-  const shouldShowSavedPlant =
-    sessionStorage.getItem("moodGardenPlantedThisSession") === "true" &&
-    sessionStorage.getItem("moodGardenReloaded") !== "true";
+  const saved = sessionStorage.getItem("moodGardenPlant");
 
   gardenPlants.forEach(function (gardenPlant) {
     gardenPlant.classList.remove(...plantClasses);
@@ -116,7 +113,7 @@ function loadMainPlant() {
     gardenScene.setAttribute("aria-label", "MoodGarden Sunflower garden");
   }
 
-  if (!saved || !mainPlant || !shouldShowSavedPlant) {
+  if (!saved || !mainPlant) {
     return;
   }
 

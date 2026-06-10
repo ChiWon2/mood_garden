@@ -1,4 +1,4 @@
-﻿const moodData = {
+const moodData = {
   happy: {
     mood: "행복",
     plant: "Sunflower",
@@ -93,7 +93,7 @@ form.addEventListener("submit", function (event) {
   const safeName = escapeHTML(name);
   const safeNote = escapeHTML(note);
 
-  localStorage.setItem("moodGardenPlant", JSON.stringify({
+  sessionStorage.setItem("moodGardenPlant", JSON.stringify({
     source: "form",
     owner: name,
     mood: selected.mood,
@@ -102,24 +102,23 @@ form.addEventListener("submit", function (event) {
     gameClass: selected.gameClass,
     level: level.value
   }));
-  sessionStorage.removeItem("moodGardenReloaded");
-  sessionStorage.setItem("moodGardenPlantedThisSession", "true");
 
   resultCard.innerHTML = `
     <p class="eyebrow">Today Plant</p>
     <h2>${safeName}님의 식물은 ${selected.plant}</h2>
     <p><strong>${selected.korean}</strong> · 감정 ${selected.mood} · 강도 ${level.value}</p>
-    <p>${selected.message}</p>
-    <p>${selected.meaning}</p>
-    <p><strong>오늘의 돌봄:</strong> ${selected.care}</p>
-    <p>오늘의 한 줄: ${safeNote}</p>
-    <p>이 식물은 오늘의 정원과 감정 돌보기 게임에 바로 반영됩니다.</p>
-    <a class="button secondary full" href="game.html">이 식물 키우러 가기</a>
     <div class="result-plant-preview" id="resultPlant" aria-label="${selected.korean} 감정 식물">
       <div class="game-plant ${selected.gameClass} stage-bloom">
         ${getPlantHTML(selected.gameClass)}
       </div>
     </div>
+    <p>${selected.message}</p>
+    <p>${selected.meaning}</p>
+    <p><strong>오늘의 돌봄:</strong> ${selected.care}</p>
+    <p>오늘의 한 줄: ${safeNote}</p>
+    <p>이 식물은 오늘의 정원과 감정 돌보기 게임에 바로 반영됩니다.</p>
+    <a class="button primary full" href="game.html">이 식물 키우러 가기</a>
+    <a class="button secondary full" href="dictionary.html" style="margin-top: 10px;">감정도감에서 식물 확인하기</a>
   `;
 });
 function selectMoodFromURL() {
@@ -134,5 +133,43 @@ function selectMoodFromURL() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", selectMoodFromURL);
+function checkSavedPlant() {
+  const saved = sessionStorage.getItem("moodGardenPlant");
+  if (!saved) return;
+
+  try {
+    const plant = JSON.parse(saved);
+    let selected = null;
+    for (const key in moodData) {
+      if (moodData[key].gameClass === plant.gameClass) {
+        selected = moodData[key];
+        break;
+      }
+    }
+
+    if (selected) {
+      resultCard.innerHTML = `
+        <p class="eyebrow">Today Plant</p>
+        <h2>지금 "${selected.korean}"이(가) 심어져 있어요</h2>
+        <div class="result-plant-preview" id="resultPlant" aria-label="${selected.korean} 감정 식물">
+          <div class="game-plant ${selected.gameClass} stage-bloom">
+            ${getPlantHTML(selected.gameClass)}
+          </div>
+        </div>
+        <p>폼을 새로 작성하면 이곳에 새로운 오늘의 식물과 성장 메시지가 표시됩니다.</p>
+        <a class="button primary full" href="game.html" style="margin-top: 15px;">이 식물 키우러 가기</a>
+        <a class="button secondary full" href="dictionary.html" style="margin-top: 10px;">감정도감에서 식물 확인하기</a>
+      `;
+    }
+  } catch (error) {
+    console.error("저장된 식물 데이터를 읽는 데 실패했습니다.", error);
+  }
+}
+
+function initForm() {
+  selectMoodFromURL();
+  checkSavedPlant();
+}
+
+document.addEventListener("DOMContentLoaded", initForm);
 

@@ -1,4 +1,4 @@
-﻿
+
 .form-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.618fr) minmax(300px, 1fr);
@@ -46,15 +46,52 @@ fieldset {
   margin: 0;
 }
 
+/* 감정 강도 라디오 버튼 커스텀 (모바일 및 프리미엄 터치 타겟 지원) */
 .radio-row {
   display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
 }
 
 .radio-row label {
-  color: var(--ink);
-  font-weight: 600;
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 15px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 700;
+  background: #ffffff;
+  color: var(--muted);
+  transition: all 0.2s ease;
+  text-align: center;
+  user-select: none;
+}
+
+.radio-row input[type="radio"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.radio-row label:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.radio-row label:has(input[type="radio"]:checked) {
+  border-color: var(--primary);
+  background: #eaf7e9;
+  color: var(--primary-dark);
+  box-shadow: 0 4px 12px rgba(63, 125, 84, 0.1);
 }
 
 .result-plant {
@@ -151,5 +188,43 @@ fieldset {
 
 .result-plant-preview .game-plant.plant-lavender {
   transform: scale(0.76);
+}
+
+/* 모바일 및 태블릿 화면 최적화 미디어 쿼리 */
+@media (max-width: 920px) {
+  .form-layout {
+    grid-template-columns: 1fr; /* 세로 배치로 변경 */
+    gap: 18px;
+    padding-bottom: 40px;
+  }
+
+  .mood-form,
+  .result-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .mood-form,
+  .result-card {
+    padding: 16px;
+  }
+
+  .radio-row {
+    gap: 8px;
+  }
+
+  .radio-row label {
+    min-height: 40px;
+    padding: 0 10px;
+    font-size: 0.9rem;
+  }
+
+  .mood-form input[type="text"],
+  .mood-form select,
+  .mood-form textarea {
+    padding: 11px 12px;
+    font-size: 16px; /* iOS 자동 줌 방지 */
+  }
 }
 

@@ -1,4 +1,4 @@
-﻿
+
 .team-grid {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   align-items: stretch;
@@ -85,5 +85,25 @@
   line-height: 1.74;
   text-align: left;
   word-break: keep-all;
+}
+
+/* 반응형 화면 최적화 미디어 쿼리 */
+@media (max-width: 920px) {
+  .team-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .team-grid {
+    grid-template-columns: 1fr; /* 모바일 세로 배치 */
+    gap: 18px;
+  }
+
+  .member-card {
+    min-height: auto;
+    padding: 24px 18px;
+  }
 }
 

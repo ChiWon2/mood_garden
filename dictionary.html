@@ -8,24 +8,27 @@
     <link rel="stylesheet" href="css/dictionary.css" />
   </head>
   <body>
+    <header class="site-header">
+      <a class="brand" href="main.html" aria-label="MoodGarden main">
+        <img
+          class="brand-logo"
+          src="assets/logo/justLogo.png"
+          alt="MoodGarden logo"
+        />
+        <span>MoodGarden</span>
+      </a>
 
-  <header class="site-header">
-    <a class="brand" href="main.html" aria-label="MoodGarden main">
-      <img class="brand-logo" src="assets/logo/justLogo.png" alt="MoodGarden logo">
-      <span>MoodGarden</span>
-    </a>
+      <button class="mobile-menu-btn" aria-label="메뉴 열기">☰</button>
 
-    <button class="mobile-menu-btn" aria-label="메뉴 열기"> ☰</button>
-
-    <nav class="nav">
-      <a href="main.html">오늘의 정원</a>
-      <a href="form.html">감정 심기</a>
-      <a href="game.html">감정 돌보기</a>
-      <a class="active" href="dictionary.html">감정 도감</a>
-      <a href="shout.html">감정 비우기</a>
-      <a href="team.html">가드너 소개</a>
-    </nav>
-  </header>
+      <nav class="nav">
+        <a href="main.html">오늘의 정원</a>
+        <a href="form.html">감정 심기</a>
+        <a href="game.html">감정 돌보기</a>
+        <a class="active" href="dictionary.html">감정 도감</a>
+        <a href="shout.html">감정 비우기</a>
+        <a href="team.html">가드너 소개</a>
+      </nav>
+    </header>
 
     <main>
       <section class="page-title">
@@ -65,9 +68,7 @@
       </div>
 
       <section class="split-layout-rev">
-
         <div class="aside-column">
-
           <div class="card dictionary-card">
             <div class="plant-display-box">
               <div
@@ -92,11 +93,8 @@
                 </div>
               </div>
               <div class="overview-actions">
-                <a class="button primary" href="game.html" id="gameBtn"
-                  >식물 돌보기</a
-                >
                 <a
-                  class="button secondary"
+                  class="button primary"
                   href="form.html?mood=happy"
                   id="formBtn"
                   >이 감정 심기</a
@@ -112,7 +110,6 @@
         </div>
 
         <div class="card dictionary-card">
-
           <div class="desc-section" id="videoSection">
             <h2>감정 테라피 추천 영상</h2>
             <div class="video-container">
@@ -155,7 +152,6 @@
           <div class="desc-section stage-section">
             <h2>성장 단계별 모습</h2>
             <div class="stage-preview-list">
-
               <div class="stage-preview-item" data-stage="stage-seed">
                 <div class="stage-preview-visual">
                   <div class="game-plant plant-sunflower stage-seed">
@@ -205,12 +201,11 @@
       </section>
     </main>
 
-  <footer class="site-footer">
-    <p>KMU - Web Client Computing - Team9  MoodGarden · HTML CSS JavaScript</p>
-  </footer>
+    <footer class="site-footer">
+      <p>KMU - Web Client Computing - Team9 MoodGarden · HTML CSS JavaScript</p>
+    </footer>
 
-  <script src="js/common.js"></script>
+    <script src="js/common.js"></script>
     <script src="js/dictionary.js"></script>
   </body>
 </html>
-

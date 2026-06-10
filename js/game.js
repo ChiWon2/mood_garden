@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
 const gameTitle = document.querySelector("#gameTitle");
 
 const stageText = document.querySelector("#stageText");
@@ -18,6 +18,7 @@ const actionLayer = document.querySelector("#actionLayer");
 const gameField = document.querySelector("#gameField");
 const plantRequiredModal = document.querySelector("#plantRequiredModal");
 const closePlantModal = document.querySelector("#closePlantModal");
+const newPlantBtn = document.querySelector("#newPlantBtn");
 
 const plantClasses = [
   "plant-sunflower",
@@ -101,12 +102,9 @@ function closePlantRequiredModal() {
 }
 
 function readSavedPlant() {
-  const saved = localStorage.getItem("moodGardenPlant");
+  const saved = sessionStorage.getItem("moodGardenPlant");
 
-  const plantedThisSession = sessionStorage.getItem("moodGardenPlantedThisSession") === "true";
-  const reloaded = sessionStorage.getItem("moodGardenReloaded") === "true";
-
-  if (!saved || !plantedThisSession || reloaded) {
+  if (!saved) {
     return false;
   }
 
@@ -114,7 +112,7 @@ function readSavedPlant() {
     const parsed = JSON.parse(saved);
 
     if (parsed.source !== "form") {
-      localStorage.removeItem("moodGardenPlant");
+      sessionStorage.removeItem("moodGardenPlant");
       return false;
     }
 
@@ -128,7 +126,7 @@ function readSavedPlant() {
     }
     return true;
   } catch (error) {
-    localStorage.removeItem("moodGardenPlant");
+    sessionStorage.removeItem("moodGardenPlant");
     return false;
   }
 }
@@ -326,12 +324,10 @@ function markFeedback(success) {
 function finishGame(message, guide) {
   isPlaying = false;
   gameFinished = true;
-  localStorage.setItem("moodGardenLastPlant", getPlantKeyFromClass(currentPlant.gameClass));
-  sessionStorage.setItem("moodGardenShowLastPlantInDictionary", "true");
   clearActionTimers();
   startBtn.disabled = false;
-  startBtn.textContent = "감정도감으로 가기";
-  resetBtn.textContent = "새 감정 심기";
+  startBtn.textContent = "감정도감에서 식물 확인하기";
+  resetBtn.textContent = "감정 식물 지우기";
   gameMessage.textContent = message;
   gameGuide.textContent = guide;
   updateDisplay();
@@ -689,7 +685,7 @@ function renderMiniAction() {
 
 function startGame() {
   if (gameFinished) {
-    window.location.href = `dictionary.html?plant=${getPlantKeyFromClass(currentPlant.gameClass)}`;
+    window.location.href = "dictionary.html";
     return;
   }
 
@@ -714,6 +710,7 @@ function startGame() {
 
 function resetGame() {
   if (gameFinished) {
+    sessionStorage.removeItem("moodGardenPlant");
     window.location.href = "form.html";
     return;
   }
@@ -750,6 +747,13 @@ if (plantRequiredModal) {
     if (event.target === plantRequiredModal) {
       closePlantRequiredModal();
     }
+  });
+}
+if (newPlantBtn) {
+  newPlantBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    sessionStorage.removeItem("moodGardenPlant");
+    window.location.href = "form.html";
   });
 }
 

@@ -1,9 +1,4 @@
-﻿const header = document.querySelector('.site-header');
-const navEntry = performance.getEntriesByType("navigation")[0];
-
-if (navEntry && navEntry.type === "reload") {
-  sessionStorage.setItem("moodGardenReloaded", "true");
-}
+const header = document.querySelector('.site-header');
 
 if (header) {
   window.addEventListener('scroll', () => {
