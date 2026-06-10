@@ -1,4 +1,4 @@
-﻿
+
 .game-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.618fr) minmax(300px, 1fr);
@@ -731,5 +731,210 @@
 @keyframes plant-wilt-pop {
   0%, 100% { transform: translateX(-50%) rotate(0deg); }
   45% { transform: translateX(-50%) rotate(-3deg) scale(0.96); }
+}
+
+.mini-action p:not(.action-progress) {
+  padding: 12px 16px;
+}
+
+@media (max-width: 920px) {
+  .game-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-field {
+    grid-template-columns: minmax(0, 1fr) 78px;
+    grid-template-rows: auto 1fr;
+    height: 440px;
+    padding: 18px;
+  }
+
+  .care-field {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(210px, 1fr);
+    height: auto;
+    min-height: 520px;
+  }
+
+  .game-plant {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: end;
+  }
+
+  .game-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .game-intro {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .game-intro .button {
+    width: 100%;
+  }
+
+  .field-sun {
+    top: auto;
+    right: 22px;
+    bottom: 146px;
+    width: 58px;
+    height: 58px;
+  }
+
+  .sky-cloud {
+    min-width: 70px;
+    min-height: 44px;
+  }
+
+  .sky-cloud.cloud-1 { top: auto; right: 24px; bottom: 208px; }
+  .sky-cloud.cloud-2 { top: auto; right: 92px; bottom: 164px; }
+  .sky-cloud.cloud-3 { top: auto; right: 28px; bottom: 120px; }
+  .sky-cloud.cloud-4 { top: auto; right: 118px; bottom: 82px; }
+
+  .threat-1 { --tx: 140px; --ty: 220px; }
+  .threat-2 { --tx: -150px; --ty: 210px; }
+  .threat-3 { --tx: 150px; --ty: -70px; }
+  .threat-4 { --tx: -140px; --ty: -80px; }
+
+  .speech-options {
+    left: 50%;
+    bottom: 24px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: min(390px, 86%);
+  }
+
+  .sigh-cloud,
+  .sigh-meter,
+  .sigh-button {
+    left: 50%;
+  }
+
+  .sigh-cloud {
+    bottom: 104px;
+  }
+
+  .sigh-button {
+    bottom: 48px;
+  }
+
+  .sigh-meter {
+    bottom: 18px;
+    width: 78%;
+  }
+
+  .game-field.sigh-mode .game-plant {
+    margin-bottom: 118px;
+    transform: translateX(-50%) scale(0.82);
+  }
+}
+
+@media (max-width: 560px) {
+  .game-panel,
+  .game-message {
+    padding: 18px;
+  }
+
+  .game-stats {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .game-stats div {
+    padding: 12px;
+  }
+
+  .game-stats strong {
+    font-size: 1.4rem;
+  }
+
+  .game-field {
+    min-height: 320px;
+  }
+
+  .care-status {
+    padding: 16px;
+  }
+
+  .care-status h2 {
+    font-size: 1.25rem;
+  }
+
+  .care-status p {
+    font-size: 0.9rem;
+  }
+
+  .mini-action {
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 390px) {
+  .game-field {
+    grid-template-columns: minmax(0, 1fr) 62px;
+    height: 430px;
+    padding: 14px;
+  }
+
+  .care-field {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 500px;
+  }
+
+  .speech-bubble {
+    width: 100%;
+    max-width: none;
+    min-height: 36px;
+    padding: 0 8px;
+    font-size: 0.78rem;
+  }
+
+  .sigh-meter {
+    bottom: 14px;
+    width: 84%;
+  }
+
+  .sigh-button {
+    bottom: 42px;
+    min-height: 42px;
+    padding: 0 14px;
+    font-size: 0.9rem;
+  }
+
+  .sigh-cloud {
+    bottom: 94px;
+    width: 128px;
+  }
+
+  .field-sun {
+    right: 16px;
+    bottom: 142px;
+    width: 52px;
+    height: 52px;
+    font-size: 0.72rem;
+  }
+
+  .sky-cloud {
+    min-width: 62px;
+    min-height: 40px;
+    font-size: 0.84rem;
+  }
+
+  .sky-cloud.cloud-1 { right: 18px; bottom: 202px; }
+  .sky-cloud.cloud-2 { left: auto; right: 78px; bottom: 160px; }
+  .sky-cloud.cloud-3 { right: 18px; bottom: 118px; }
+  .sky-cloud.cloud-4 { right: 92px; bottom: 82px; }
+
+  .game-field.sigh-mode .game-plant {
+    margin-bottom: 112px;
+    transform: translateX(-50%) scale(0.78);
+  }
 }
 
